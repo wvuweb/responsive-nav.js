@@ -47,6 +47,12 @@ section {
   height: 800px;
 }
 
+button {
+  background-color: transparent;
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
 /* ------------------------------------------
   HEADER
 --------------------------------------------- */
@@ -153,7 +159,7 @@ section {
   width: 100%;
   background: #f4421a;
   border-bottom: 1px solid rgba(0,0,0, .15);
-  padding: 0.7em 1em;
+  padding: 0.9em 1.1em;
   float: left;
 }
 
@@ -192,6 +198,7 @@ section {
 }
 
 .nav-toggle {
+  border: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-touch-callout: none;
@@ -237,11 +244,11 @@ section {
 --------------------------------------------- */
 
 /* Enable active class to let the navigation expand over the calculated max height. */
-.js .nav-collapse.opened.dropdown-active {
+.js .nav-collapse.multiple-level-nav.opened.dropdown-active {
   max-height: 9999px !important;
 }
 
-.js .nav-collapse .sub-menu {
+.js .nav-collapse.multiple-level-nav .sub-menu {
   clip: rect(0 0 0 0);
   max-height: 0;
   position: absolute;
@@ -250,7 +257,7 @@ section {
   zoom: 1;
 }
 
-.js .nav-collapse .sub-menu.toggled {
+.js .nav-collapse.multiple-level-nav .sub-menu.toggled {
   max-height: 9999px;
   position: relative;
 }
@@ -260,24 +267,22 @@ section {
 }
 
 .js .nav-collapse .dropdown-toggle-button {
-  background-color: transparent;
   border: 1px solid #fff;
   color: #fff;
   content: "";
-  -webkit-appearance: button;
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
+  height: 36px;
+  width: 36px;
   padding: 0;
   position: absolute;
   margin: 0;
   text-transform: lowercase;
-  top: 6px;
+  top: 0.6em;
   right: 4%;
 }
 
 .js .nav-collapse .dropdown-toggle-button:after {
   content: "+";
+  font-size: 20px;
 }
 .js .nav-collapse .dropdown-toggle-button.toggled:after {
   content: "-";

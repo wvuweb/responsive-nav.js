@@ -457,7 +457,7 @@
         this.resize();
 		
 		// Enable more accessible dropdown menu
-		this._createAccessible();
+		this._createMultiLevel();
 
         /**
          * On IE8 the resize event triggers too early for some reason
@@ -692,7 +692,7 @@
       /**
        * Adds aria-haspopup and creates .focus class on nav elements
        */
-      _createAccessible: function () {
+      _createMultiLevel: function () {
 		
 		// Bail if multiple level dropdown is not enabled.
 		if(!opts.enableDropdown) {
@@ -706,6 +706,9 @@
 		parentLink = nav.querySelectorAll( '.' + opts.dropDown + ' > a' ),
 		i,
 		len;
+		
+        // Add .multiple-level-nav class to nav
+        addClass( nav, 'multiple-level-nav' );
 		
         // Each time a menu link is focused or blurred, toggle focus.
         for ( i = 0, len = links.length; i < len; i++ ) {
@@ -723,62 +726,62 @@
           parentLink[i].insertAdjacentHTML( 'afterend', '<button class="dropdown-toggle-button" aria-expanded="false">' + opts.openDropdown + '</button>' );
         }
 		
-		// Select all dropdown buttons
-		var dropdownButton = nav.querySelectorAll( '.dropdown-toggle-button' );
+        // Select all dropdown buttons
+        var dropdownButton = nav.querySelectorAll( '.dropdown-toggle-button' );
 		
-		// For each dropdown Button element add click event
-		forEach( dropdownButton, function( i, el ) {
+        // For each dropdown Button element add click event
+        forEach( dropdownButton, function( i, el ) {
 
-			// Add click event listener
-			el.addEventListener( "click", function( event ) {
+          // Add click event listener
+          el.addEventListener( "click", function( event ) {
 				
-				// Change dropdown button text on every click
-				if( this.innerHTML === opts.openDropdown ) {
-					this.innerHTML = opts.closeDropdown;
-				} else {
-					this.innerHTML = opts.openDropdown;
-				}
+            // Change dropdown button text on every click
+            if( this.innerHTML === opts.openDropdown ) {
+              this.innerHTML = opts.closeDropdown;
+            } else {
+              this.innerHTML = opts.openDropdown;
+            }
 				
-				// Toggle dropdown button
-				if( !hasClass( this, 'toggled' ) ) {
+            // Toggle dropdown button
+            if( !hasClass( this, 'toggled' ) ) {
 					
-					// Add .toggled class
-					addClass( this, 'toggled' );
+              // Add .toggled class
+              addClass( this, 'toggled' );
 					
-					// Set aria-expanded to true
-					this.setAttribute( 'aria-expanded', 'true' );
+              // Set aria-expanded to true
+              this.setAttribute( 'aria-expanded', 'true' );
 					
-					// Get next element meaning UL with .sub-menu class
-					var nextElement = this.nextElementSibling;
+              // Get next element meaning UL with .sub-menu class
+              var nextElement = this.nextElementSibling;
 					
-					// Add 'toggled' class to sub-menu element
-					addClass( nextElement, 'toggled' );
+              // Add 'toggled' class to sub-menu element
+              addClass( nextElement, 'toggled' );
 					
-					// Add 'dropdown-active' class to nav when dropdown is toggled
-					addClass( nav, 'dropdown-active' );
+              // Add 'dropdown-active' class to nav when dropdown is toggled
+              addClass( nav, 'dropdown-active' );
 						
-				} else {
+            } else {
 					
-					// Remove .toggled class
-					removeClass( this, 'toggled' );
+              // Remove .toggled class
+              removeClass( this, 'toggled' );
 					
-					// Set aria-expanded to false
-					this.setAttribute( 'aria-expanded', 'false' );
+              // Set aria-expanded to false
+              this.setAttribute( 'aria-expanded', 'false' );
 					
-					// Get next element meaning UL with .sub-menu
-					var nextElement = this.nextElementSibling;
+              // Get next element meaning UL with .sub-menu
+              var nextElement = this.nextElementSibling;
 					
-					// Remove 'toggled' class from sub-menu element
-					removeClass( nextElement, 'toggled' );
+              // Remove 'toggled' class from sub-menu element
+              removeClass( nextElement, 'toggled' );
 					
-					// Remove 'dropdown-active' class to nav when dropdown is toggled
-					removeClass( nav, 'dropdown-active' );
+              // Remove 'dropdown-active' class to nav when dropdown is toggled
+              removeClass( nav, 'dropdown-active' );
 					
-				}
+            }
 				
-			}, false );
+        }, false );
 
-		});
+       });
 	
       }
 

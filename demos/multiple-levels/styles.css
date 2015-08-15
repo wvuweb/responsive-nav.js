@@ -303,7 +303,7 @@ button {
 }
 
 @media screen and (min-width: 40em) {
-  .js .nav-collapse .dropdown ul,
+  .nav-collapse .dropdown ul,
   .dropdown-toggle-button  {
     display: none;
   }
@@ -366,8 +366,8 @@ button {
     text-align: left;
     border: 0;
   }
-  .js .nav-collapse .dropdown:hover > ul,
-  .js .nav-collapse .dropdown.focus > ul  {
+  .nav-collapse .dropdown:hover > ul,
+  .nav-collapse .dropdown.focus > ul  {
     clip: auto;
     position: absolute;
     width: 10em;
@@ -375,12 +375,12 @@ button {
     left: 0;
     display: block !important;
   }
-  .js .nav-collapse .dropdown .dropdown:hover > ul,
-  .js .nav-collapse .dropdown .dropdown.focus > ul  {
+  .nav-collapse .dropdown .dropdown:hover > ul,
+  .nav-collapse .dropdown .dropdown.focus > ul  {
     top: 0;
     left: 10em;
   }
-  .js .nav-collapse ul > .dropdown:last-child ul {
+  .nav-collapse ul > .dropdown:last-child ul {
     left: auto;
     right: 0;
   }

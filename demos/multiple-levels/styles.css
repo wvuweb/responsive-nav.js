@@ -332,7 +332,7 @@ button {
     border-left: 6px solid #fff;
   }
   .nav-collapse a:hover,
-  .nav-collapse a.focus {
+  .nav-collapse li.focus > a {
     color: rgba(255,255,255, .7);
   }
   .nav-collapse .dropdown {

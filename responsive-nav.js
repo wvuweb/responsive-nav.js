@@ -231,9 +231,9 @@
           navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
           jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
           menuItems: "menu-items",          // String: Class that is added only to top ul element
-		  subMenu: "sub-menu",              // String: Class that is added to sub menu elements
+          subMenu: "sub-menu",              // String: Class that is added to sub menu elements
           enableDropdown: false,            // Boolean: Do we use multi level dropdown
-		  init: function(){},               // Function: Init callback
+          init: function(){},               // Function: Init callback
           open: function(){},               // Function: Open callback
           close: function(){}               // Function: Close callback
         };
@@ -442,8 +442,8 @@
         this._transitions();
         this.resize();
 		
-		// Enable focus on nav elements
-		this._createFocus();
+		// Enable more accessible dropdown menu
+		this._createAccessible();
 
         /**
          * On IE8 the resize event triggers too early for some reason
@@ -676,9 +676,9 @@
       },
 	  
       /**
-       * Creates .focus class on nav elements
+       * Adds aria-haspopup and creates .focus class on nav elements
        */
-      _createFocus: function () {
+      _createAccessible: function () {
 		
 		// Bail if multiple level dropdown is not enabled.
 		if(!opts.enableDropdown) {
@@ -688,9 +688,15 @@
         // Get all the link elements within the menu.
 		var menu = nav.getElementsByTagName( 'ul' )[0],
         links = menu.getElementsByTagName( 'a' ),
+		subMenus = menu.getElementsByTagName( 'ul' ),
 		menuItems = 'menu-items',
 		i,
 		len;
+		
+        // Set menu items with submenus to aria-haspopup="true".
+        for ( var i = 0, len = subMenus.length; i < len; i++ ) {
+          subMenus[i].parentNode.setAttribute( 'aria-haspopup', 'true' );
+        }
 		
         // Each time a menu link is focused or blurred, toggle focus.
         for ( i = 0, len = links.length; i < len; i++ ) {

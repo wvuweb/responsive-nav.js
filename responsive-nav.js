@@ -165,6 +165,17 @@
         var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
         el.className = el.className.replace(reg, " ").replace(/(^\s*)|(\s*$)/g,"");
       },
+	  
+      /**
+       * Checks if an element has certain class
+       *
+       * @param  {element}  element
+       * @param  {string}   class name
+       * @return {Boolean}
+       */
+      hasClass = function (el, cls) {
+        return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
+      },
     
       /**
        * forEach method that passes back the stuff we need
@@ -711,6 +722,63 @@
         for ( i = 0; i < parentLink.length; ++i ) {
           parentLink[i].insertAdjacentHTML( 'afterend', '<button class="dropdown-toggle-button" aria-expanded="false">' + opts.openDropdown + '</button>' );
         }
+		
+		// Select all dropdown buttons
+		var dropdownButton = nav.querySelectorAll( '.dropdown-toggle-button' );
+		
+		// For each dropdown Button element add click event
+		forEach( dropdownButton, function( i, el ) {
+
+			// Add click event listener
+			el.addEventListener( "click", function( event ) {
+				
+				// Change dropdown button text on every click
+				if( this.innerHTML === opts.openDropdown ) {
+					this.innerHTML = opts.closeDropdown;
+				} else {
+					this.innerHTML = opts.openDropdown;
+				}
+				
+				// Toggle dropdown button
+				if( !hasClass( this, 'toggled' ) ) {
+					
+					// Add .toggled class
+					addClass( this, 'toggled' );
+					
+					// Set aria-expanded to true
+					this.setAttribute( 'aria-expanded', 'true' );
+					
+					// Get next element meaning UL with .sub-menu class
+					var nextElement = this.nextElementSibling;
+					
+					// Add 'toggled' class to sub-menu element
+					addClass( nextElement, 'toggled' );
+					
+					// Add 'dropdown-active' class to nav when dropdown is toggled
+					addClass( nav, 'dropdown-active' );
+						
+				} else {
+					
+					// Remove .toggled class
+					removeClass( this, 'toggled' );
+					
+					// Set aria-expanded to false
+					this.setAttribute( 'aria-expanded', 'false' );
+					
+					// Get next element meaning UL with .sub-menu
+					var nextElement = this.nextElementSibling;
+					
+					// Remove 'toggled' class from sub-menu element
+					removeClass( nextElement, 'toggled' );
+					
+					// Remove 'dropdown-active' class to nav when dropdown is toggled
+					removeClass( nav, 'dropdown-active' );
+					
+				}
+				
+			}, false );
+
+		});
 	
       }
 

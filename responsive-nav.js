@@ -723,11 +723,11 @@
 		
         // Add button after link when there is submenu around.
         for ( i = 0; i < parentLink.length; ++i ) {
-          parentLink[i].insertAdjacentHTML( 'afterend', '<button class="dropdown-toggle-button" aria-expanded="false">' + opts.openDropdown + '</button>' );
+          parentLink[i].insertAdjacentHTML( 'afterend', '<button class="dropdown-toggle" aria-expanded="false">' + opts.openDropdown + '</button>' );
         }
 		
         // Select all dropdown buttons
-        var dropdownButton = nav.querySelectorAll( '.dropdown-toggle-button' );
+        var dropdownButton = nav.querySelectorAll( '.dropdown-toggle' );
 		
         // For each dropdown Button element add click event
         forEach( dropdownButton, function( i, el ) {

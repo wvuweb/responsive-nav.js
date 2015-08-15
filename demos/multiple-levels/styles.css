@@ -15,9 +15,9 @@ summary, hgroup {
   border: 0;
 }
 
-a:active,
-a:hover {
-  outline: 0;
+
+:focus {
+  outline: 1px dotted #fff;
 }
 
 @-webkit-viewport { width: device-width; }
@@ -268,7 +268,7 @@ button {
     position: relative;
   }
 
-  .js .nav-collapse .dropdown-toggle-button {
+  .js .nav-collapse .dropdown-toggle {
     border: 1px solid #fff;
     color: #fff;
     content: "";
@@ -282,11 +282,11 @@ button {
     right: 4%;
   }
 
-  .js .nav-collapse .dropdown-toggle-button:after {
+  .js .nav-collapse .dropdown-toggle:after {
     content: "+";
     font-size: 20px;
   }
-  .js .nav-collapse .dropdown-toggle-button.toggled:after {
+  .js .nav-collapse .dropdown-toggle.toggled:after {
     content: "-";
   }
   
@@ -304,7 +304,7 @@ button {
 
 @media screen and (min-width: 40em) {
   .nav-collapse .dropdown ul,
-  .dropdown-toggle-button  {
+  .dropdown-toggle  {
     display: none;
   }
 }
@@ -318,7 +318,7 @@ button {
   padding: 0;
 }
 
-.dropdown .dropdown.opened .dropdown-toggle {
+.dropdown .dropdown.opened .has-dropdown {
   background: #9c2c12;
 }
 
@@ -331,7 +331,7 @@ button {
   }
   
 
-  .dropdown-toggle:after {
+  .has-dropdown:after {
     font-size: 1.5em;
     line-height: 0.8;
     float: right;
@@ -343,7 +343,7 @@ button {
     border-right: 6px solid transparent;
     border-top: 6px solid #fff;
   }
-  .dropdown ul .dropdown-toggle:after {
+  .dropdown ul .has-dropdown:after {
     content: "";
     width: 0;
     height: 0;

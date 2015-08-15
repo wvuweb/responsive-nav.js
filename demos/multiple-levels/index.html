@@ -12,7 +12,7 @@
 
     <div class="header">
       <a href="index.html" class="logo">Responsive Nav</a>
-	  <button id="nav-toggle" class="nav-toggle"><span class="screen-reader-text">Open menu</span></button>
+	  <button id="nav-toggle" class="nav-toggle">Open menu</button>
       <div class="nav-collapse" id="nav">
         <ul class="menu-items">
           <li>
@@ -72,12 +72,12 @@
 			open: function () {
 				customToggle.setAttribute( 'aria-expanded', 'true' );
 				customToggle.setAttribute( 'aria-pressed', 'true' );
-				customToggle.innerHTML = '<span class="screen-reader-text">Close menu</span>';
+				customToggle.innerHTML = 'Close menu';
 			},
 			close: function () {
 				customToggle.setAttribute( 'aria-expanded', 'false' );
 				customToggle.setAttribute( 'aria-pressed', 'false' );
-				customToggle.innerHTML = '<span class="screen-reader-text">Open menu</span>';
+				customToggle.innerHTML = 'Open menu';
 			},
       });
     </script>

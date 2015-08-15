@@ -243,53 +243,55 @@ button {
   MULTIPLE LEVELS
 --------------------------------------------- */
 
-/* Enable active class to let the navigation expand over the calculated max height. */
-.js .nav-collapse.multiple-level-nav.opened.dropdown-active {
-  max-height: 9999px !important;
+@media screen and (max-width: 39.999em) {
+
+  /* Enable active class to let the navigation expand over the calculated max height. */
+  .js .nav-collapse.multiple-level-nav.opened.dropdown-active {
+    max-height: 9999px !important;
+  }
+
+  .js .nav-collapse.multiple-level-nav .sub-menu {
+    clip: rect(0 0 0 0);
+    max-height: 0;
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    zoom: 1;
+  }
+
+  .js .nav-collapse.multiple-level-nav .sub-menu.toggled {
+    max-height: 9999px;
+    position: relative;
+  }
+
+  .js .nav-collapse li {
+    position: relative;
+  }
+
+  .js .nav-collapse .dropdown-toggle-button {
+    border: 1px solid #fff;
+    color: #fff;
+    content: "";
+    height: 36px;
+    width: 36px;
+    padding: 0;
+    position: absolute;
+    margin: 0;
+    text-transform: lowercase;
+    top: 0.6em;
+    right: 4%;
+  }
+
+  .js .nav-collapse .dropdown-toggle-button:after {
+    content: "+";
+    font-size: 20px;
+  }
+  .js .nav-collapse .dropdown-toggle-button.toggled:after {
+    content: "-";
+  }
+  
 }
-
-.js .nav-collapse.multiple-level-nav .sub-menu {
-  clip: rect(0 0 0 0);
-  max-height: 0;
-  position: absolute;
-  display: block;
-  overflow: hidden;
-  zoom: 1;
-}
-
-.js .nav-collapse.multiple-level-nav .sub-menu.toggled {
-  max-height: 9999px;
-  position: relative;
-}
-
-.js .nav-collapse li {
-  position: relative;
-}
-
-.js .nav-collapse .dropdown-toggle-button {
-  border: 1px solid #fff;
-  color: #fff;
-  content: "";
-  height: 36px;
-  width: 36px;
-  padding: 0;
-  position: absolute;
-  margin: 0;
-  text-transform: lowercase;
-  top: 0.6em;
-  right: 4%;
-}
-
-.js .nav-collapse .dropdown-toggle-button:after {
-  content: "+";
-  font-size: 20px;
-}
-.js .nav-collapse .dropdown-toggle-button.toggled:after {
-  content: "-";
-}
-
-
-
+  
 .dropdown ul a {
   background: #b63315;
   padding-left: 1.5em;

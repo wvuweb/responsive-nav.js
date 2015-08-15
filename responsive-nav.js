@@ -177,6 +177,29 @@
         for (var i = 0; i < array.length; i++) {
           callback.call(scope, i, array[i]);
         }
+      },
+	  
+      /**
+       * Sets or removes .focus class on an element.
+       */
+      toggleFocus = function () {
+        var self = this;
+
+        // Move up through the ancestors of the current link until we hit .nav-menu.
+        while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
+
+          // On li elements toggle the class .focus.
+          if ( 'li' === self.tagName.toLowerCase() ) {
+            if ( -1 !== self.className.indexOf( 'focus' ) ) {
+              self.className = self.className.replace( ' focus', '' );
+            } else {
+              self.className += ' focus';
+            }
+          }
+
+          self = self.parentElement;
+        }
+		
       };
 
     var nav,
@@ -206,6 +229,7 @@
           navClass: "nav-collapse",         // String: Default CSS class. If changed, you need to edit the CSS too!
           navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
           jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
+		  subMenu: "sub-menu",              // String: Class that is added to sub menu elements
           init: function(){},               // Function: Init callback
           open: function(){},               // Function: Open callback
           close: function(){}               // Function: Close callback
@@ -414,6 +438,9 @@
         this._createToggle();
         this._transitions();
         this.resize();
+		
+		// Enable focus on nav elements
+		this._createFocus();
 
         /**
          * On IE8 the resize event triggers too early for some reason
@@ -643,6 +670,25 @@
         }
 
         innerStyles = "";
+      },
+	  
+      /**
+       * Creates .focus class on nav elements
+       */
+      _createFocus: function () {
+
+        // Get all the link elements within the menu.
+		var menu = nav.getElementsByTagName( 'ul' )[0],
+        links = menu.getElementsByTagName( 'a' ),
+		i,
+		len;
+		
+        // Each time a menu link is focused or blurred, toggle focus.
+        for ( i = 0, len = links.length; i < len; i++ ) {
+          links[i].addEventListener( 'focus', toggleFocus, true );
+          links[i].addEventListener( 'blur', toggleFocus, true );
+        }
+	
       }
 
     };

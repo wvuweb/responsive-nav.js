@@ -13,7 +13,7 @@
     <div class="header">
       <a href="index.html" class="logo">Responsive Nav</a>
       <div class="nav-collapse" id="nav">
-        <ul>
+        <ul class="menu-items">
           <li>
             <a href="subpage.html">A link</a>
           </li>
@@ -58,7 +58,9 @@
 
     <script>
       // Init responsive nav
-      var navigation = responsiveNav("#nav");
+      var navigation = responsiveNav("#nav", {
+	    enableDropdown: true
+      });
     </script>
 
   </body>

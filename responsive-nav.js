@@ -183,10 +183,11 @@
        * Sets or removes .focus class on an element.
        */
       toggleFocus = function () {
-        var self = this;
+        var self = this,
+		menuItems = opts.menuItems;
 
-        // Move up through the ancestors of the current link until we hit .nav-menu.
-        while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
+        // Move up through the ancestors of the current link until we hit 'menu-items' class. That's top level ul-element class name.
+        while ( -1 === self.className.indexOf( menuItems ) ) {
 
           // On li elements toggle the class .focus.
           if ( 'li' === self.tagName.toLowerCase() ) {
@@ -229,8 +230,10 @@
           navClass: "nav-collapse",         // String: Default CSS class. If changed, you need to edit the CSS too!
           navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
           jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
+          menuItems: "menu-items",          // String: Class that is added only to top ul element
 		  subMenu: "sub-menu",              // String: Class that is added to sub menu elements
-          init: function(){},               // Function: Init callback
+          enableDropdown: false,            // Boolean: Do we use multi level dropdown
+		  init: function(){},               // Function: Init callback
           open: function(){},               // Function: Open callback
           close: function(){}               // Function: Close callback
         };
@@ -676,10 +679,16 @@
        * Creates .focus class on nav elements
        */
       _createFocus: function () {
+		
+		// Bail if multiple level dropdown is not enabled.
+		if(!opts.enableDropdown) {
+		  return;	
+		}
 
         // Get all the link elements within the menu.
 		var menu = nav.getElementsByTagName( 'ul' )[0],
         links = menu.getElementsByTagName( 'a' ),
+		menuItems = 'menu-items',
 		i,
 		len;
 		

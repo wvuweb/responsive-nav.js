@@ -165,17 +165,6 @@
         var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
         el.className = el.className.replace(reg, " ").replace(/(^\s*)|(\s*$)/g,"");
       },
-	  
-      /**
-       * Checks if an element has certain class
-       *
-       * @param  {element}  element
-       * @param  {string}   class name
-       * @return {Boolean}
-       */
-      hasClass = function (el, cls) {
-        return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
-      },
     
       /**
        * forEach method that passes back the stuff we need
@@ -188,6 +177,17 @@
         for (var i = 0; i < array.length; i++) {
           callback.call(scope, i, array[i]);
         }
+      },
+	  
+      /**
+       * Checks if an element has certain class
+       *
+       * @param  {element}  element
+       * @param  {string}   class name
+       * @return {Boolean}
+       */
+      hasClass = function (el, cls) {
+        return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
       },
 	  
       /**

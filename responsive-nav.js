@@ -230,10 +230,13 @@
           navClass: "nav-collapse",         // String: Default CSS class. If changed, you need to edit the CSS too!
           navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
           jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
-          menuItems: "menu-items",          // String: Class that is added only to top ul element
-          subMenu: "sub-menu",              // String: Class that is added to sub menu elements
           enableDropdown: false,            // Boolean: Do we use multi level dropdown
-          init: function(){},               // Function: Init callback
+		  menuItems: "menu-items",          // String: Class that is added only to top ul element
+          subMenu: "sub-menu",              // String: Class that is added to sub menu elements
+          dropDown: "dropdown",             // String: Class that is added to link element that have sub menu
+          openDropdown: "Open sub menu",    // String: Label for opening sub menu
+          closeDropdown: "Close sub menu",  // String: Label for closing sub menu
+		  init: function(){},               // Function: Init callback
           open: function(){},               // Function: Open callback
           close: function(){}               // Function: Close callback
         };
@@ -689,19 +692,24 @@
 		var menu = nav.getElementsByTagName( 'ul' )[0],
         links = menu.getElementsByTagName( 'a' ),
 		subMenus = menu.getElementsByTagName( 'ul' ),
-		menuItems = 'menu-items',
+		parentLink = nav.querySelectorAll( '.' + opts.dropDown + ' > a' ),
 		i,
 		len;
-		
-        // Set menu items with submenus to aria-haspopup="true".
-        for ( var i = 0, len = subMenus.length; i < len; i++ ) {
-          subMenus[i].parentNode.setAttribute( 'aria-haspopup', 'true' );
-        }
 		
         // Each time a menu link is focused or blurred, toggle focus.
         for ( i = 0, len = links.length; i < len; i++ ) {
           links[i].addEventListener( 'focus', toggleFocus, true );
           links[i].addEventListener( 'blur', toggleFocus, true );
+        }
+		
+        // Set menu items with submenus to aria-haspopup="true".
+        for ( i = 0, len = subMenus.length; i < len; i++ ) {
+          subMenus[i].parentNode.setAttribute( 'aria-haspopup', 'true' );
+        }
+		
+        // Add button after link when there is submenu around.
+        for ( i = 0; i < parentLink.length; ++i ) {
+          parentLink[i].insertAdjacentHTML( 'afterend', '<button class="dropdown-toggle-button" aria-expanded="false">' + opts.openDropdown + '</button>' );
         }
 	
       }

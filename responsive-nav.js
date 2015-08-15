@@ -700,12 +700,12 @@
 		}
 
         // Get all the link elements within the menu.
-		var menu = nav.getElementsByTagName( 'ul' )[0],
+        var menu = nav.getElementsByTagName( 'ul' )[0],
         links = menu.getElementsByTagName( 'a' ),
-		subMenus = menu.getElementsByTagName( 'ul' ),
-		parentLink = nav.querySelectorAll( '.' + opts.dropDown + ' > a' ),
-		i,
-		len;
+        subMenus = menu.getElementsByTagName( 'ul' ),
+        parentLink = nav.querySelectorAll( '.' + opts.dropDown + ' > a' ),
+        i,
+        len;
 		
         // Add .multiple-level-nav class to nav
         addClass( nav, 'multiple-level-nav' );

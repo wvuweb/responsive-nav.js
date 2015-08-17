@@ -102,6 +102,7 @@ Following the steps below you will be able to get the plugin up and running. If 
 			var customToggle = document.getElementById( 'nav-toggle' );
 			var navigation = responsiveNav(".nav-collapse", {
 				customToggle: "#nav-toggle", // Selector: Specify the ID of a custom toggle
+				enableFocus: true,
 				enableDropdown: true,
 				openDropdown: '<span class="screen-reader-text">Open sub menu</span>',
 				closeDropdown: '<span class="screen-reader-text">Close sub menu</span>',
@@ -136,6 +137,7 @@ Following the steps below you will be able to get the plugin up and running. If 
 			navClass: "nav-collapse",        // String: Default CSS class. If changed, you need to edit the CSS too!
 			navActiveClass: "js-nav-active", // String: Class that is added to <html> element when nav is active
 			jsClass: "js",                   // String: 'JS enabled' class which is added to <html> element
+			enableFocus: false,              // Boolean: Do we add 'focus' class in nav elements
 			enableDropdown: false,           // Boolean: Do we use multi level dropdown
 			menuItems: "menu-items",         // String: Class that is added only to top ul element
 			subMenu: "sub-menu",             // String: Class that is added to sub menu ul elements

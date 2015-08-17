@@ -458,7 +458,8 @@
         this.resize();
 		
 		// Enable more accessible dropdown menu
-		this._createMultiLevel();
+        this._createFocus();
+        this._createMultiLevel();
 
         /**
          * On IE8 the resize event triggers too early for some reason
@@ -693,28 +694,42 @@
       /**
        * Adds aria-haspopup and creates .focus class on nav elements
        */
-      _createMultiLevel: function () {
+      _createFocus: function () {
+		  
+	    if(!opts.enableFocus) {
+		  return;
+		}
 		  
         // Get all the link elements within the menu.
         var menu = nav.getElementsByTagName( 'ul' )[0],
         links = menu.getElementsByTagName( 'a' ),
+		len,
+		i;
+		  
+        // Each time a menu link is focused or blurred, toggle focus.
+        for ( i = 0, len = links.length; i < len; i++ ) {
+          links[i].addEventListener( 'focus', toggleFocus, true );
+          links[i].addEventListener( 'blur', toggleFocus, true );
+        }
+	   
+	  },
+	  
+      /**
+       * Enable multi-level dropdown
+       */
+      _createMultiLevel: function () {
+		  
+        // Bail if multiple level dropdown is not enabled.
+        if(!opts.enableDropdown) {
+          return;	
+        }
+		  
+		// Get submenus
+		var menu = nav.getElementsByTagName( 'ul' )[0],
         subMenus = menu.getElementsByTagName( 'ul' ),
         parentLink = nav.querySelectorAll( '.' + opts.dropDown + ' > a' ),
         i,
         len;
-		
-       // Each time a menu link is focused or blurred, toggle focus.
-	   if(opts.enableFocus) {
-         for ( i = 0, len = links.length; i < len; i++ ) {
-           links[i].addEventListener( 'focus', toggleFocus, true );
-           links[i].addEventListener( 'blur', toggleFocus, true );
-         }
-	   }
-		
-       // Bail if multiple level dropdown is not enabled.
-       if(!opts.enableDropdown) {
-         return;	
-       }
 		
        // Add .multiple-level-nav class to nav
        addClass( nav, 'multiple-level-nav' );

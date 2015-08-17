@@ -42,9 +42,9 @@ Following the steps below you will be able to get the plugin up and running. If 
 	```
 
 1. Add markup: Note that there are three classes added. 
-	1.1 `menu-items` for top ul element
-	1.1 `sub-menu` for sub menu ul elements
-	1.1 `dropdown` for link elements that have sub menu
+	1. `menu-items` for top ul element
+	2. `sub-menu` for sub menu ul elements
+	3. `dropdown` for link elements that have sub menu
 
 	```html
 		<nav class="nav-collapse">

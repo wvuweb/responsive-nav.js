@@ -41,12 +41,25 @@ Following the steps below you will be able to get the plugin up and running. If 
 		<script src="responsive-nav.js"></script>
 	```
 
-1. Add markup: Note that there are three classes added. You can change these in options.
+1. Add markup:
+	```html
+		<nav class="nav-collapse">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Projects</a></li>
+				<li><a href="#">Contact</a></li>
+		 	</ul>
+		</nav>
+	```
+
+1. Add markup for multilevel dropdown menu: Note that there are three classes added. You can change these in options.
 	1. `menu-items` for top ul element
 	2. `sub-menu` for sub menu ul elements
 	3. `dropdown` for link elements that have sub menu
 
 	```html
+		<button id="nav-toggle" class="nav-toggle">Open menu</button>
 		<nav class="nav-collapse">
 			<ul class="menu-items">
 				<li><a href="#">Home</a></li>

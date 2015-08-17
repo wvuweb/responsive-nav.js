@@ -82,33 +82,33 @@ Following the steps below you will be able to get the plugin up and running. If 
 			var nav = responsiveNav(".nav-collapse");
 		</script>
 	```
-	1.  Example of using accessible multi-level dropdown:
-		```html
-		<!-- Put this right before the </body> closing tag -->
-			<script>
-				var customToggle = document.getElementById( 'nav-toggle' );
-				var navigation = responsiveNav(".nav-collapse", {
-					customToggle: "#nav-toggle", // Selector: Specify the ID of a custom toggle
-					enableDropdown: true,
-					openDropdown: '<span class="screen-reader-text">Open sub menu</span>',
-					closeDropdown: '<span class="screen-reader-text">Close sub menu</span>',
-					init: function () {          // Set ARIA for menu toggle button
-						customToggle.setAttribute( 'aria-expanded', 'false' );
-						customToggle.setAttribute( 'aria-pressed', 'false' );
-					},
-					open: function () {
-						customToggle.setAttribute( 'aria-expanded', 'true' );
-						customToggle.setAttribute( 'aria-pressed', 'true' );
-						customToggle.innerHTML = 'Close menu';
-					},
-					close: function () {
-						customToggle.setAttribute( 'aria-expanded', 'false' );
-						customToggle.setAttribute( 'aria-pressed', 'false' );
-						customToggle.innerHTML = 'Open menu';
-					},
-				});
-			</script>
-		```
+1.  Example of using accessible multi-level dropdown:
+	```html
+	<!-- Put this right before the </body> closing tag -->
+		<script>
+			var customToggle = document.getElementById( 'nav-toggle' );
+			var navigation = responsiveNav(".nav-collapse", {
+				customToggle: "#nav-toggle", // Selector: Specify the ID of a custom toggle
+				enableDropdown: true,
+				openDropdown: '<span class="screen-reader-text">Open sub menu</span>',
+				closeDropdown: '<span class="screen-reader-text">Close sub menu</span>',
+				init: function () {          // Set ARIA for menu toggle button
+					customToggle.setAttribute( 'aria-expanded', 'false' );
+					customToggle.setAttribute( 'aria-pressed', 'false' );
+				},
+				open: function () {
+					customToggle.setAttribute( 'aria-expanded', 'true' );
+					customToggle.setAttribute( 'aria-pressed', 'true' );
+					customToggle.innerHTML = 'Close menu';
+				},
+				close: function () {
+					customToggle.setAttribute( 'aria-expanded', 'false' );
+					customToggle.setAttribute( 'aria-pressed', 'false' );
+					customToggle.innerHTML = 'Open menu';
+				},
+			});
+		</script>
+	```
 
 1. Customizable options:
 	```javascript

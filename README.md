@@ -22,6 +22,7 @@
 
 # Demos
 
+* [Accessible multi-level dropdown demo](http://foxnet.fi/responsive-nav/demos/multiple-levels/)
 * [Fixed positioned one page demo](http://www.adtile.me/fixed-nav/) using smooth scrolling. View source on GitHub: [adtile/fixed-nav](https://github.com/adtile/fixed-nav)
 * [Advanced demo](http://responsive-nav.com/demo/) (View the [source code](https://github.com/viljamis/responsive-nav.js/tree/master/demos/advanced-left-navigation))
 * [Official website](http://responsive-nav.com) (works as a demo, too!)
@@ -40,13 +41,35 @@ Following the steps below you will be able to get the plugin up and running. If 
 		<script src="responsive-nav.js"></script>
 	```
 
-1. Add markup:
+1. Add markup: Note that there are three classes added. 
+	1.1 `menu-items` for top ul element
+	1.1 `sub-menu` for sub menu ul elements
+	1.1 `dropdown` for link elements that have sub menu
+
 	```html
 		<nav class="nav-collapse">
-			<ul>
+			<ul class="menu-items">
 				<li><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Projects</a></li>
+				<li><a href="#" class="dropdown">Sub menu</a>
+					<ul class="sub-menu">
+						<li><a href="#">Sub link</a></li>
+						<li><a href="#">Sub link</a></li>
+						<li><a href="#">Sub link</a></li>
+					</ul>
+				</li>
+				<li><a href="#" class="dropdown">Sub menu</a>
+					<ul class="sub-menu">
+						<li><a href="#">Sub link</a></li>
+						<li><a href="#" class="dropdown">Sub link</a>
+							<ul class="sub-menu">
+								<li><a href="#">Deep link</a></li>
+								<li><a href="#">Deep link</a></li>
+								<li><a href="#">Deep link</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Sub link</a></li>
+					</ul>				
+				</li>
 				<li><a href="#">Contact</a></li>
 		 	</ul>
 		</nav>

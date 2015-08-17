@@ -176,8 +176,8 @@ button {
     border-bottom: 0;
     border-right: 1px solid white;
   }
-  .nav-collapse li:last-child a {
-    border: 0;
+  .nav-collapse li:first-child a {
+    border-left: 1px solid white;
   }
 }
 
@@ -282,10 +282,10 @@ button {
 }
 
 @media screen and (min-width: 40em) {
-  .nav-collapse .dropdown ul,
   .dropdown-toggle  {
     display: none;
   }
+
 }
 
 .dropdown ul {
@@ -303,13 +303,17 @@ button {
 
 @media screen and (min-width: 40em) {
 
+  .nav-collapse {
+    padding-right: 4%;
+	position: relative;
+  }
+
   .js .nav-collapse,
   .js .nav-collapse .dropdown ul {
     max-height: none;
     overflow: visible;
   }
   
-
   .has-dropdown:after {
     font-size: 1.5em;
     line-height: 0.8;
@@ -317,7 +321,7 @@ button {
     content: "";
     width: 0;
     height: 0;
-    margin: 0.3em 0 0 0.5em;
+    margin: 1em 0 0 0.5em;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid #fff;
@@ -345,22 +349,60 @@ button {
     text-align: left;
     border: 0;
   }
-  .nav-collapse .dropdown:hover > ul,
-  .nav-collapse .dropdown.focus > ul  {
-    clip: auto;
-    position: absolute;
-    width: 10em;
-    top: 3.4em;
-    left: 0;
-    display: block !important;
-  }
-  .nav-collapse .dropdown .dropdown:hover > ul,
-  .nav-collapse .dropdown .dropdown.focus > ul  {
-    top: 0;
-    left: 10em;
-  }
-  .nav-collapse ul > .dropdown:last-child ul {
-    left: auto;
-    right: 0;
-  }
+  
+	.nav-collapse li {
+		border: 0;
+		display: inline-block;
+		height: 55px;
+		line-height: 55px;
+		position: relative;
+	}
+
+	.nav-collapse a {
+		display: inline-block;
+		padding: 0 10px;
+	}
+
+	.nav-collapse ul ul {
+		float: left;
+		margin: 0;
+		position: absolute;
+		top: 85px;
+		left: -999em;
+		z-index: 99999;
+		text-align: center;
+	}
+
+	.nav-collapse li li {
+		border: 0;
+		display: block;
+		height: auto;
+		line-height: 1.0909090909;
+	}
+
+	.nav-collapse ul ul ul {
+		left: -999em;
+		top: 20px;
+	}
+
+	.nav-collapse ul ul a {
+		padding: 15px 12px;
+		white-space: normal;
+		width: 150px;
+	}
+
+	.nav-collapse ul li:hover > ul,
+	.nav-collapse ul li.focus > ul {
+		top: 55px;
+		left: 50%;
+		margin-left: -75px;
+	}
+
+	.nav-collapse ul ul li:hover > ul,
+	.nav-collapse ul ul li.focus > ul {
+		top: 0;
+		left: 0%;
+		margin-left: 150px;
+	}
+  
 }

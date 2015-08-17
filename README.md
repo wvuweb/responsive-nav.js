@@ -41,7 +41,7 @@ Following the steps below you will be able to get the plugin up and running. If 
 		<script src="responsive-nav.js"></script>
 	```
 
-1. Add markup: Note that there are three classes added. 
+1. Add markup: Note that there are three classes added. You can change these in options.
 	1. `menu-items` for top ul element
 	2. `sub-menu` for sub menu ul elements
 	3. `dropdown` for link elements that have sub menu
@@ -82,23 +82,56 @@ Following the steps below you will be able to get the plugin up and running. If 
 			var nav = responsiveNav(".nav-collapse");
 		</script>
 	```
+	1.  Example of using accessible multi-level dropdown:
+		```html
+		<!-- Put this right before the </body> closing tag -->
+			<script>
+				var customToggle = document.getElementById( 'nav-toggle' );
+				var navigation = responsiveNav(".nav-collapse", {
+					customToggle: "#nav-toggle", // Selector: Specify the ID of a custom toggle
+					enableDropdown: true,
+					openDropdown: '<span class="screen-reader-text">Open sub menu</span>',
+					closeDropdown: '<span class="screen-reader-text">Close sub menu</span>',
+					init: function () {          // Set ARIA for menu toggle button
+						customToggle.setAttribute( 'aria-expanded', 'false' );
+						customToggle.setAttribute( 'aria-pressed', 'false' );
+					},
+					open: function () {
+						customToggle.setAttribute( 'aria-expanded', 'true' );
+						customToggle.setAttribute( 'aria-pressed', 'true' );
+						customToggle.innerHTML = 'Close menu';
+					},
+					close: function () {
+						customToggle.setAttribute( 'aria-expanded', 'false' );
+						customToggle.setAttribute( 'aria-pressed', 'false' );
+						customToggle.innerHTML = 'Open menu';
+					},
+				});
+			</script>
+		```
 
 1. Customizable options:
 	```javascript
 		var nav = responsiveNav(".nav-collapse", { // Selector
-			animate: true, // Boolean: Use CSS3 transitions, true or false
-			transition: 284, // Integer: Speed of the transition, in milliseconds
-			label: "Menu", // String: Label for the navigation toggle
-			insert: "before", // String: Insert the toggle before or after the navigation
-			customToggle: "", // Selector: Specify the ID of a custom toggle
-			closeOnNavClick: false, // Boolean: Close the navigation when one of the links are clicked
-			openPos: "relative", // String: Position of the opened nav, relative or static
-			navClass: "nav-collapse", // String: Default CSS class. If changed, you need to edit the CSS too!
+			animate: true,                   // Boolean: Use CSS3 transitions, true or false
+			transition: 284,                 // Integer: Speed of the transition, in milliseconds
+			label: "Menu",                   // String: Label for the navigation toggle
+			insert: "before",                // String: Insert the toggle before or after the navigation
+			customToggle: "",                // Selector: Specify the ID of a custom toggle
+			closeOnNavClick: false,          // Boolean: Close the navigation when one of the links are clicked
+			openPos: "relative",             // String: Position of the opened nav, relative or static
+			navClass: "nav-collapse",        // String: Default CSS class. If changed, you need to edit the CSS too!
 			navActiveClass: "js-nav-active", // String: Class that is added to <html> element when nav is active
-			jsClass: "js", // String: 'JS enabled' class which is added to <html> element
-			init: function(){}, // Function: Init callback
-			open: function(){}, // Function: Open callback
-			close: function(){} // Function: Close callback
+			jsClass: "js",                   // String: 'JS enabled' class which is added to <html> element
+			enableDropdown: false,           // Boolean: Do we use multi level dropdown
+			menuItems: "menu-items",         // String: Class that is added only to top ul element
+			subMenu: "sub-menu",             // String: Class that is added to sub menu ul elements
+			dropDown: "dropdown",            // String: Class that is added to link element that have sub menu
+			openDropdown: "Open sub menu",   // String: Label for opening sub menu
+			closeDropdown: "Close sub menu", // String: Label for closing sub menu
+			init: function(){},              // Function: Init callback
+			open: function(){},              // Function: Open callback
+			close: function(){}              // Function: Close callback
 		});
 	```
 

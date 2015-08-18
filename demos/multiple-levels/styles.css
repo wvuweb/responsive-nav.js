@@ -154,13 +154,13 @@ button {
 }
 
 .nav-collapse a {
-  color: #fff;
-  text-decoration: none;
-  width: 100%;
   background: #f4421a;
   border-bottom: 1px solid rgba(0,0,0, .15);
-  padding: 0.9em 1.1em;
+  color: #fff;
   float: left;
+  padding: 0.9em 1.1em;
+  text-decoration: none;
+  width: 100%;
 }
 
 .nav-collapse a:active {
@@ -169,12 +169,12 @@ button {
 
 @media screen and (min-width: 40em) {
   .nav-collapse a {
-    margin: 0;
-    padding: 1em 1.5em;
-    float: left;
-    text-align: center;
     border-bottom: 0;
     border-right: 1px solid white;
+    padding: 1em 1.5em;
+    margin: 0;
+    float: left;
+    text-align: center;
   }
   .nav-collapse li:first-child a {
     border-left: 1px solid white;
@@ -350,59 +350,59 @@ button {
     border: 0;
   }
   
-	.nav-collapse li {
-		border: 0;
-		display: inline-block;
-		height: 55px;
-		line-height: 55px;
-		position: relative;
-	}
+  .nav-collapse li {
+    border: 0;
+    display: inline-block;
+    height: 55px;
+    line-height: 55px;
+    position: relative;
+  }
 
-	.nav-collapse a {
-		display: inline-block;
-		padding: 0 10px;
-	}
+  .nav-collapse a {
+    display: inline-block;
+    padding: 0 16px;
+  }
 
-	.nav-collapse ul ul {
-		float: left;
-		margin: 0;
-		position: absolute;
-		top: 85px;
-		left: -999em;
-		z-index: 99999;
-		text-align: center;
-	}
+  .nav-collapse ul ul {
+    float: left;
+    margin: 0;
+    position: absolute;
+    top: 85px;
+    left: -999em;
+    z-index: 99999;
+    text-align: center;
+  }
 
-	.nav-collapse li li {
-		border: 0;
-		display: block;
-		height: auto;
-		line-height: 1.0909090909;
-	}
+  .nav-collapse li li {
+    border: 0;
+    display: block;
+    height: auto;
+    line-height: 1.0909090909;
+  }
 
-	.nav-collapse ul ul ul {
-		left: -999em;
-		top: 20px;
-	}
+  .nav-collapse ul ul ul {
+    left: -999em;
+    top: 20px;
+  }
 
-	.nav-collapse ul ul a {
-		padding: 15px 12px;
-		white-space: normal;
-		width: 150px;
-	}
+  .nav-collapse ul ul a {
+    padding: 15px 12px;
+    white-space: normal;
+    width: 150px;
+  }
 
-	.nav-collapse ul li:hover > ul,
-	.nav-collapse ul li.focus > ul {
-		top: 55px;
-		left: 50%;
-		margin-left: -75px;
-	}
+  .nav-collapse ul li:hover > ul,
+  .nav-collapse ul li.focus > ul {
+    top: 55px;
+    left: 50%;
+    margin-left: -75px;
+  }
 
-	.nav-collapse ul ul li:hover > ul,
-	.nav-collapse ul ul li.focus > ul {
-		top: 0;
-		left: 0%;
-		margin-left: 150px;
-	}
+  .nav-collapse ul ul li:hover > ul,
+  .nav-collapse ul ul li.focus > ul {
+    top: 0;
+    left: 0%;
+    margin-left: 150px;
+  }
   
 }

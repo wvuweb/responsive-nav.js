@@ -243,8 +243,8 @@
           navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
           jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
           enableFocus: false,               // Boolean: Do we add 'focus' class in nav elements
-		  enableDropdown: false,            // Boolean: Do we use multi level dropdown
-		  menuItems: "menu-items",          // String: Class that is added only to top ul element
+          enableDropdown: false,            // Boolean: Do we use multi level dropdown
+          menuItems: "menu-items",          // String: Class that is added only to top ul element
           subMenu: "sub-menu",              // String: Class that is added to sub menu ul elements
           dropDown: "dropdown",             // String: Class that is added to li element that have sub menu
           openDropdown: "Open sub menu",    // String: Label for opening sub menu

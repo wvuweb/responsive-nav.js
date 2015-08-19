@@ -435,14 +435,6 @@
           nav.style.position = opts.openPos;
           this._removeStyles();
 		  
-          if(opts.enableDropdown) {
-            removeClass(nav, "dropdown-active");
-            forEach(dropdownButton, function (i, el) {
-              removeClass(el, "toggled");
-			  removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
-            });                 
-          }
-		  
         }
       },
 

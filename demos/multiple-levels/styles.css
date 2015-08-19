@@ -149,7 +149,7 @@ p {
 }
 
 .nav-collapse > ul {
-  border-top: 1px solid rgba(0,0,0, .15);
+  border-top: 1px solid rgba(255,255,255, .15);
 }
 
 .nav-collapse li {
@@ -206,6 +206,7 @@ p {
 .nav-toggle {
   border: 1px solid #fff;
   color: #fff;
+  font-size: 0.85em;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

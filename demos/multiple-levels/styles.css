@@ -233,12 +233,13 @@ button {
     clip: rect(0 0 0 0);
     max-height: 0;
     position: absolute;
-    display: block;
+    display: none; /* This way you don't have focus on sub menu items unless you open the sub menu. */
     overflow: hidden;
     zoom: 1;
   }
 
   .js .nav-collapse.multiple-level-nav .sub-menu.toggled {
+    display: block;
     max-height: 9999px;
     position: relative;
   }

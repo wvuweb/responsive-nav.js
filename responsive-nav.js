@@ -383,6 +383,7 @@
                 removeClass(nav, "dropdown-active");
                 forEach(dropdownButton, function (i, el) {
                   removeClass(el, "toggled");
+                  removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
                 });                 
               }
 			  
@@ -396,6 +397,7 @@
               removeClass(nav, "dropdown-active");
               forEach(dropdownButton, function (i, el) {
                 removeClass(el, "toggled");
+                removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
               });                 
             }
           }
@@ -435,9 +437,10 @@
 		  
           if(opts.enableDropdown) {
             removeClass(nav, "dropdown-active");
-            //forEach(dropdownButton, function (i, el) {
-              //removeClass(el.parentNode, "toggled");
-            //});                 
+            forEach(dropdownButton, function (i, el) {
+              removeClass(el, "toggled");
+			  removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
+            });                 
           }
 		  
         }
@@ -792,7 +795,7 @@
        // Add .multiple-level-nav class to nav
        addClass(nav, 'multiple-level-nav');
 		
-       // Set menu items with submenus to aria-haspopup="true" and add toggle button before sub menu.
+       // Set menu items with sub menus to aria-haspopup="true" and add toggle button before sub menu.
        for (i = 0, len = subMenus.length; i < len; i++) {
          subMenus[i].parentNode.setAttribute( 'aria-haspopup', 'true' );
          subMenus[i].insertAdjacentHTML( 'beforebegin', '<button class="dropdown-toggle" aria-expanded="false">' + opts.openDropdown + '</button>' );

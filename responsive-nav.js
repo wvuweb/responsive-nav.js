@@ -700,9 +700,17 @@
        * @param  {event} event
        */
       _onKeyUp: function (e) {
-        var evt = e || window.event;
+        var evt = e || window.event,
+          targetEl = e.target,
+          isDropdownTapped = false;
+		  
+        if (hasClass(targetEl, "dropdown-toggle") && opts.enableDropdown) isDropdownTapped = true;
         if (evt.keyCode === 13) {
-          this.toggle();
+         if (isDropdownTapped) {
+            this._toggleDropdown(targetEl);
+          } else {
+            this.toggle();
+          }
         }
       },
 

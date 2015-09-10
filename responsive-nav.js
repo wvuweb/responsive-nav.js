@@ -246,7 +246,6 @@
           enableDropdown: false,            // Boolean: Do we use multi level dropdown
           menuItems: "menu-items",          // String: Class that is added only to top ul element
           subMenu: "sub-menu",              // String: Class that is added to sub menu ul elements
-          dropDown: "dropdown",             // String: Class that is added to li element that have sub menu
           openDropdown: "Open sub menu",    // String: Label for opening sub menu
           closeDropdown: "Close sub menu",  // String: Label for closing sub menu
           init: function(){},               // Function: Init callback

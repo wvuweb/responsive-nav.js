@@ -784,10 +784,10 @@
           return;	
         }
 		
-		var self = this;
+        var self = this;
 		  
-		// Get submenus
-		var menu = nav.getElementsByTagName( 'ul' )[0],
+        // Get submenus
+        var menu = nav.getElementsByTagName( 'ul' )[0],
         subMenus = menu.getElementsByTagName( 'ul' ),
         i,
         len;

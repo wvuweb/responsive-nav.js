@@ -355,6 +355,8 @@
           addClass(navToggle, "active");
           nav.style.position = opts.openPos;
           setAttributes(nav, {"aria-hidden": "false"});
+		  setAttributes(nav, {"aria-expanded": "true"});
+		  setAttributes(navToggle, {"aria-expanded": "true"});
           navOpen = true;
           opts.open();
         }
@@ -370,6 +372,8 @@
           removeClass(htmlEl, opts.navActiveClass);
           removeClass(navToggle, "active");
           setAttributes(nav, {"aria-hidden": "true"});
+		  setAttributes(nav, {"aria-expanded": "false"});
+		  setAttributes(navToggle, {"aria-expanded": "false"});
 
           // If animations are enabled, wait until they finish
           if (opts.animate) {
@@ -417,11 +421,19 @@
 
           isMobile = true;
           setAttributes(navToggle, {"aria-hidden": "false"});
+		  setAttributes(nav, {"aria-expanded": "false"});
+		  setAttributes(navToggle, {"aria-expanded": "false"});
 
           // If the navigation is hidden
           if (nav.className.match(/(^|\s)closed(\s|$)/)) {
             setAttributes(nav, {"aria-hidden": "true"});
             nav.style.position = "absolute";
+          }
+		  
+          // If the navigation is not hidden
+          if (!nav.className.match(/(^|\s)closed(\s|$)/)) {
+		  setAttributes(nav, {"aria-expanded": "true"});
+		  setAttributes(navToggle, {"aria-expanded": "true"});
           }
 
           this._createStyles();
@@ -431,6 +443,8 @@
           isMobile = false;
           setAttributes(navToggle, {"aria-hidden": "true"});
           setAttributes(nav, {"aria-hidden": "false"});
+		  nav.removeAttribute("aria-expanded");
+		  navToggle.removeAttribute("aria-expanded");
           nav.style.position = opts.openPos;
           this._removeStyles();
 		  

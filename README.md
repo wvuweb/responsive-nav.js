@@ -106,18 +106,10 @@ Following the steps below you will be able to get the plugin up and running. If 
 				enableDropdown: true,
 				openDropdown: '<span class="screen-reader-text">Open sub menu</span>',
 				closeDropdown: '<span class="screen-reader-text">Close sub menu</span>',
-				init: function () {          // Set ARIA for menu toggle button
-					customToggle.setAttribute( 'aria-expanded', 'false' );
-					customToggle.setAttribute( 'aria-pressed', 'false' );
-				},
 				open: function () {
-					customToggle.setAttribute( 'aria-expanded', 'true' );
-					customToggle.setAttribute( 'aria-pressed', 'true' );
 					customToggle.innerHTML = 'Close menu';
 				},
 				close: function () {
-					customToggle.setAttribute( 'aria-expanded', 'false' );
-					customToggle.setAttribute( 'aria-pressed', 'false' );
 					customToggle.innerHTML = 'Open menu';
 				},
 			});

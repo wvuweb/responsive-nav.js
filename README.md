@@ -144,6 +144,8 @@ Following the steps below you will be able to get the plugin up and running. If 
 			init: function(){},              // Function: Init callback
 			open: function(){},              // Function: Open callback
 			close: function(){}              // Function: Close callback
+			resizeMobile: function(){},      // Function: Resize callback for "mobile"     
+			resize: function(){}             // Function: Resize callback for "desktop"
 		});
 	```
 

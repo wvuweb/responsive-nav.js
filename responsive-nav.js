@@ -252,7 +252,7 @@
           open: function(){},               // Function: Open callback
           close: function(){},              // Function: Close callback
           resizeMobile: function(){},       // Function: Resize callback for "mobile"     
-          resize: function(){}              // Function: Close callback for "desktop"
+          resize: function(){}              // Function: Resize callback for "desktop"
         };
 
         // User defined options

@@ -250,7 +250,9 @@
           closeDropdown: "Close sub menu",  // String: Label for closing sub menu
           init: function(){},               // Function: Init callback
           open: function(){},               // Function: Open callback
-          close: function(){}               // Function: Close callback
+          close: function(){},              // Function: Close callback
+          resizeMobile: function(){},       // Function: Resize callback for "mobile"     
+          resize: function(){}              // Function: Close callback for "desktop"
         };
 
         // User defined options
@@ -432,12 +434,14 @@
 		  
           // If the navigation is not hidden
           if (!nav.className.match(/(^|\s)closed(\s|$)/)) {
-		  setAttributes(nav, {"aria-expanded": "true"});
-		  setAttributes(navToggle, {"aria-expanded": "true"});
+		    setAttributes(nav, {"aria-expanded": "true"});
+		    setAttributes(navToggle, {"aria-expanded": "true"});
           }
 
           this._createStyles();
           this._calcHeight();
+		  opts.resizeMobile();
+		  
         } else {
 
           isMobile = false;
@@ -447,6 +451,7 @@
 		  navToggle.removeAttribute("aria-expanded");
           nav.style.position = opts.openPos;
           this._removeStyles();
+		  opts.resize();
 		  
         }
       },

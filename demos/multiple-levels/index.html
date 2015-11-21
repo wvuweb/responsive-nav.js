@@ -85,6 +85,12 @@
 			close: function () {
 				customToggle.innerHTML = 'Open menu';
 			},
+			resizeMobile: function () {
+				customToggle.setAttribute( 'aria-controls', 'nav' );
+			},
+			resize: function () {
+				customToggle.removeAttribute( 'aria-controls' );
+			},
 		});
 	  
     </script>

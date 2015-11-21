@@ -112,6 +112,12 @@ Following the steps below you will be able to get the plugin up and running. If 
 				close: function () {
 					customToggle.innerHTML = 'Open menu';
 				},
+				resizeMobile: function () {
+					customToggle.setAttribute( 'aria-controls', 'nav' );
+				},
+				resize: function () {
+					customToggle.removeAttribute( 'aria-controls' );
+				},
 			});
 		</script>
 	```

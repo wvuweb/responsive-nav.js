@@ -115,7 +115,7 @@ Following the steps below you will be able to get the plugin up and running. If 
 				resizeMobile: function () {
 					customToggle.setAttribute( 'aria-controls', 'nav' );
 				},
-				resize: function () {
+				resizeDesktop: function () {
 					customToggle.removeAttribute( 'aria-controls' );
 				},
 			});
@@ -145,7 +145,7 @@ Following the steps below you will be able to get the plugin up and running. If 
 			open: function(){},              // Function: Open callback
 			close: function(){}              // Function: Close callback
 			resizeMobile: function(){},      // Function: Resize callback for "mobile"     
-			resize: function(){}             // Function: Resize callback for "desktop"
+			resizeDesktop: function(){}      // Function: Resize callback for "desktop"
 		});
 	```
 

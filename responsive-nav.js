@@ -252,7 +252,7 @@
           open: function(){},               // Function: Open callback
           close: function(){},              // Function: Close callback
           resizeMobile: function(){},       // Function: Resize callback for "mobile"     
-          resize: function(){}              // Function: Resize callback for "desktop"
+          resizeDesktop: function(){}       // Function: Resize callback for "desktop"
         };
 
         // User defined options
@@ -451,7 +451,7 @@
 		  navToggle.removeAttribute("aria-expanded");
           nav.style.position = opts.openPos;
           this._removeStyles();
-		  opts.resize();
+		  opts.resizeDesktop();
 		  
         }
       },

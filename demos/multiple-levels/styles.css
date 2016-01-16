@@ -17,7 +17,7 @@ summary, hgroup {
 
 
 :focus {
-  outline: 1px dotted #fff;
+  outline: thin dotted;
 }
 
 @-webkit-viewport { width: device-width; }
@@ -83,7 +83,6 @@ p {
   color: #fff;
   float: left;
 }
-
 
 /* ------------------------------------------
   NAVIGATION STYLES
@@ -242,6 +241,13 @@ p {
 }
 
 @media screen and (max-width: 39.999em) {
+	
+  .js .nav-collapse {
+    visibility: hidden;
+  }
+  .js .nav-collapse.opened {
+    visibility: visible;
+  }
 
   /* Enable active class to let the navigation expand over the calculated max height. */
   .js .nav-collapse.multiple-level-nav.opened.dropdown-active {

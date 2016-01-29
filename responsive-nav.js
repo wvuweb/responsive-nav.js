@@ -806,7 +806,7 @@
 		  
         // Get submenus
         var menu = nav.getElementsByTagName( 'ul' )[0],
-        subMenus = menu.getElementsByTagName( 'ul' ),
+        subMenus = nav.getElementsByClassName( opts.subMenu ),
         i,
         len;
 		

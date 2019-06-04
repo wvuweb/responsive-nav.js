@@ -1,8 +1,8 @@
-/*! responsive-nav.js 1.0.39
+/*! responsive-nav.js 1.1.0
  * https://github.com/viljamis/responsive-nav.js
  * http://responsive-nav.com
  *
- * Copyright (c) 2015 @viljamis
+ * Copyright (c) 2019 @viljamis
  * Available under the MIT license
  */
 
@@ -149,10 +149,7 @@
        * @param {string}  class
        */
       addClass = function (el, cls) {
-        if (el.className.indexOf(cls) !== 0) {
-          el.className += " " + cls;
-          el.className = el.className.replace(/(^\s*)|(\s*$)/g,"");
-        }
+        el.classList.add(cls);
       },
     
       /**
@@ -162,8 +159,7 @@
        * @param  {string}  class
        */
       removeClass = function (el, cls) {
-        var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
-        el.className = el.className.replace(reg, " ").replace(/(^\s*)|(\s*$)/g,"");
+        el.classList.remove(cls);
       },
     
       /**
@@ -256,7 +252,6 @@
         removeClass(nav, "closed");
         removeClass(nav, "opened");
         removeClass(nav, opts.navClass);
-        removeClass(nav, opts.navClass + "-" + this.index);
         removeClass(htmlEl, opts.navActiveClass);
         nav.removeAttribute("style");
         nav.removeAttribute("aria-hidden");
@@ -405,7 +400,6 @@
         this.index = index++;
 
         addClass(nav, opts.navClass);
-        addClass(nav, opts.navClass + "-" + this.index);
         addClass(nav, "closed");
         hasAnimFinished = true;
         navOpen = false;
@@ -634,7 +628,7 @@
           savedHeight += nav.inner[i].offsetHeight;
         }
 
-        var innerStyles = "." + opts.jsClass + " ." + opts.navClass + "-" + this.index + ".opened{max-height:" + savedHeight + "px !important} ." + opts.jsClass + " ." + opts.navClass + "-" + this.index + ".opened.dropdown-active {max-height:9999px !important}";
+        var innerStyles = "." + opts.jsClass + " ." + opts.navClass + ".opened{max-height:" + savedHeight + "px !important} ." + opts.jsClass + " ." + opts.navClass + ".opened.dropdown-active {max-height:9999px !important}";
 
         if (styleElement.styleSheet) {
           styleElement.styleSheet.cssText = innerStyles;

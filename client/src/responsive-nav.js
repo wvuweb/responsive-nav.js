@@ -94,7 +94,6 @@
         removeClass(nav, "closed");
         removeClass(nav, "opened");
         removeClass(nav, opts.navClass);
-        removeClass(nav, opts.navClass + "-" + this.index);
         removeClass(htmlEl, opts.navActiveClass);
         nav.removeAttribute("style");
         nav.removeAttribute("aria-hidden");
@@ -243,7 +242,6 @@
         this.index = index++;
 
         addClass(nav, opts.navClass);
-        addClass(nav, opts.navClass + "-" + this.index);
         addClass(nav, "closed");
         hasAnimFinished = true;
         navOpen = false;
@@ -472,7 +470,7 @@
           savedHeight += nav.inner[i].offsetHeight;
         }
 
-        var innerStyles = "." + opts.jsClass + " ." + opts.navClass + "-" + this.index + ".opened{max-height:" + savedHeight + "px !important} ." + opts.jsClass + " ." + opts.navClass + "-" + this.index + ".opened.dropdown-active {max-height:9999px !important}";
+        var innerStyles = "." + opts.jsClass + " ." + opts.navClass + ".opened{max-height:" + savedHeight + "px !important} ." + opts.jsClass + " ." + opts.navClass + ".opened.dropdown-active {max-height:9999px !important}";
 
         if (styleElement.styleSheet) {
           styleElement.styleSheet.cssText = innerStyles;

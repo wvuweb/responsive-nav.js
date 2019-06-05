@@ -14,6 +14,18 @@ module.exports = function (grunt) {
       outputMin : "client/dist/responsive-nav.min.js"
     },
 
+    sass: {
+      dist: {
+        options: {
+          sourcemap: "auto",
+          style: "collapsed"
+        },
+        files: {
+          "client/dist/styles/resonsive-nav.css": "client/src/styles/responsive-nav.scss"
+        }
+      }
+    },
+
     jasmine : {
       options : {
         specs : "client/test/**/*.spec.js"
@@ -148,6 +160,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks("grunt-contrib-sass");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-jasmine");
   grunt.loadNpmTasks("grunt-contrib-watch");
@@ -159,5 +172,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
 
   grunt.registerTask("test", ["jshint:prebuild", "jshint:tests", "jasmine", "karma:all:run"]);
-  grunt.registerTask("default", ["test", "rig", "replace", "uglify", "copy"]);
+  grunt.registerTask("default", ["sass", "test", "rig", "replace", "uglify", "copy"]);
 };

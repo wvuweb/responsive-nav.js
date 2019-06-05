@@ -37,7 +37,34 @@
         return this;
       };
     }
-    /* exported addEvent, removeEvent, getChildren, setAttributes, addClass, removeClass, forEach, hasClass, toggleFocus */
+    /* exported checkPassiveEventSupport, addEvent, removeEvent, getChildren, setAttributes, addClass, removeClass, forEach, hasClass, toggleFocus */
+    
+    
+    /**
+     * Check support for passive event listeners
+     *
+     * @return {bool} Returns whether {passive: true} can be used
+     */
+    
+    var checkPassiveEventSupport = function () {
+        var supported = false;
+    
+      try {
+        var opts = {
+          get passive() {
+            supported = true;
+          }
+        };
+    
+        if ("addEventListener" in window) {
+          window.addEventListener("test", null, opts);
+          window.removeEventListener("test", null, opts);
+        }
+      } catch (e) {
+        supported = false;
+      }
+      return supported;
+    };
     
     /**
      * Add Event
@@ -50,16 +77,19 @@
      * @param  {boolean}  bubbling
      */
     var addEvent = function (el, evt, fn, bubble) {
+      // set passive events if this is supported
+      var options = checkPassiveEventSupport ? {passive: true, capture: bubble} : bubble;
+    
       if ("addEventListener" in el) {
         // BBOS6 doesn't support handleEvent, catch and polyfill
         try {
-          el.addEventListener(evt, fn, bubble);
+          el.addEventListener(evt, fn, options);
         } catch (e) {
           if (typeof fn === "object" && fn.handleEvent) {
             el.addEventListener(evt, function (e) {
               // Bind fn as this and set first arg as event object
               fn.handleEvent.call(fn, e);
-            }, bubble);
+            }, options);
           } else {
             throw e;
           }
@@ -76,6 +106,7 @@
         }
       }
     };
+    
     
     /**
      * Remove Event
@@ -635,17 +666,19 @@
        * @param  {event} event
        */
       _preventDefault: function(e) {
-        if (e.preventDefault) {
-          if (e.stopImmediatePropagation) {
-            e.stopImmediatePropagation();
-          }
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
+        if (!checkPassiveEventSupport) {
+          if (e.preventDefault) {
+            if (e.stopImmediatePropagation) {
+              e.stopImmediatePropagation();
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
 
-          // This is strictly for old IE
-        } else {
-          e.returnValue = false;
+            // This is strictly for old IE
+          } else {
+            e.returnValue = false;
+          }
         }
       },
 

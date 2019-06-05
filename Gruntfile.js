@@ -83,7 +83,7 @@ module.exports = function (grunt) {
       files : [
         "<%= jshint.prebuild.files.src %>",
         "<%= jshint.tests.files.src %>",
-        "client/src/styles/responsive-nav.css",
+        "client/src/styles/responsive-nav.scss",
         "client/src/bower/bower.json"
       ],
       tasks : "default"

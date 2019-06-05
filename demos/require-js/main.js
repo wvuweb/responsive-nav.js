@@ -1,3 +1,3 @@
-require(["../../responsive-nav"], function() {
+require(["../../client/dist/responsive-nav"], function() {
     var navigation = responsiveNav(".nav-collapse");
 });

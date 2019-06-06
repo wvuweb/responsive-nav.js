@@ -21,7 +21,8 @@ module.exports = function (grunt) {
           style: "collapsed"
         },
         files: {
-          "client/dist/styles/responsive-nav.css": "client/src/styles/responsive-nav.scss"
+          "client/dist/styles/responsive-nav.css": "client/src/styles/responsive-nav.scss",
+          "demos/hamburger/hamburger-styles.css": "client/src/styles/hamburgers_demo.scss"
         }
       }
     },

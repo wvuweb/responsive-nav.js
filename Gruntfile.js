@@ -140,6 +140,18 @@ module.exports = function (grunt) {
       responsiveNav : {
         files : [
           {
+            src : "<%= meta.outputMin %>",
+            dest : "responsive-nav.min.js"
+          },
+          {
+            src : "<%= meta.output %>",
+            dest : "responsive-nav.js"
+          },
+          {
+            src : "client/dist/styles/responsive-nav.css",
+            dest : "responsive-nav.css"
+          },
+          {
             src : "client/dist/bower/bower.json",
             dest : "bower.json"
           }

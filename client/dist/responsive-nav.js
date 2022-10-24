@@ -1,4 +1,4 @@
-/*! responsive-nav.js 1.1.1
+/*! responsive-nav.js 1.1.0
  * https://github.com/viljamis/responsive-nav.js
  * http://responsive-nav.com
  *
@@ -258,31 +258,27 @@
        * @type {Object}
        */
       this.options = {
-        animate: true,                                  // Boolean: Use CSS3 transitions, true or false
-        transition: 284,                                // Integer: Speed of the transition, in milliseconds
-        label: "Menu",                                  // String: Label for the navigation toggle
-        insert: "before",                               // String: Insert the toggle before or after the navigation
-        hamburger: false,                               // Boolean: Use Hamburger style toggle
-        hamburgerClass: "",                             // String: set hamburger style
-        hamburgerLabel: "",                             // String set the text label for menu
-        navToggleClass: "active",                       // String: Class that is added to the navToggle
-        customToggle: "",                               // Selector: Specify the ID of a custom toggle
-        closeOnNavClick: false,                         // Boolean: Close the navigation when one of the links are clicked
-        openPos: "relative",                            // String: Position of the opened nav, relative or static
-        navClass: "nav-collapse",                       // String: Default CSS class. If changed, you need to edit the CSS too!
-        navActiveClass: "js-nav-active",                // String: Class that is added to <html> element when nav is active
-        jsClass: "js",                                  // String: 'JS enabled' class which is added to <html> element
-        enableFocus: false,                             // Boolean: Do we add 'focus' class in nav elements
-        enableDropdown: false,                          // Boolean: Do we use multi level dropdown
-        menuItems: "menu-items",                        // String: Class that is added only to top ul element
-        subMenu: "sub-menu",                            // String: Class that is added to sub menu ul elements
-        openDropdown: "Open sub menu",                  // String: Label for opening sub menu
-        closeDropdown: "Close sub menu",                // String: Label for closing sub menu
-        init: function() {},                            // Function: Init callback
-        open: function() {},                            // Function: Open callback
-        close: function() {},                           // Function: Close callback
-        resizeMobile: function() {},                    // Function: Resize callback for "mobile"
-        resizeDesktop: function() {}                    // Function: Resize callback for "desktop"
+        animate: true, // Boolean: Use CSS3 transitions, true or false
+        transition: 284, // Integer: Speed of the transition, in milliseconds
+        label: "Menu", // String: Label for the navigation toggle
+        insert: "before", // String: Insert the toggle before or after the navigation
+        customToggle: "", // Selector: Specify the ID of a custom toggle
+        closeOnNavClick: false, // Boolean: Close the navigation when one of the links are clicked
+        openPos: "relative", // String: Position of the opened nav, relative or static
+        navClass: "nav-collapse", // String: Default CSS class. If changed, you need to edit the CSS too!
+        navActiveClass: "js-nav-active", // String: Class that is added to <html> element when nav is active
+        jsClass: "js", // String: 'JS enabled' class which is added to <html> element
+        enableFocus: false, // Boolean: Do we add 'focus' class in nav elements
+        enableDropdown: false, // Boolean: Do we use multi level dropdown
+        menuItems: "menu-items", // String: Class that is added only to top ul element
+        subMenu: "sub-menu", // String: Class that is added to sub menu ul elements
+        openDropdown: "Open sub menu", // String: Label for opening sub menu
+        closeDropdown: "Close sub menu", // String: Label for closing sub menu
+        init: function() {}, // Function: Init callback
+        open: function() {}, // Function: Open callback
+        close: function() {}, // Function: Close callback
+        resizeMobile: function() {}, // Function: Resize callback for "mobile"
+        resizeDesktop: function() {} // Function: Resize callback for "desktop"
       };
 
       // User defined options
@@ -383,7 +379,7 @@
           removeClass(nav, "closed");
           addClass(nav, "opened");
           addClass(htmlEl, opts.navActiveClass);
-          addClass(navToggle, opts.navToggleClass);
+          addClass(navToggle, "active");
           nav.style.position = opts.openPos;
           setAttributes(nav, {
             "aria-hidden": "false"
@@ -407,7 +403,7 @@
           addClass(nav, "closed");
           removeClass(nav, "opened");
           removeClass(htmlEl, opts.navActiveClass);
-          removeClass(navToggle, opts.navToggleClass);
+          removeClass(navToggle, "active");
           setAttributes(nav, {
             "aria-hidden": "true"
           });
@@ -614,31 +610,15 @@
        * Creates Navigation Toggle
        */
       _createToggle: function() {
-        var toggle;
 
-        if (opts.hamburger){
-          toggle = document.createElement("button");
-          toggle.classList.add("hamburger");
-          toggle.classList.add(opts.hamburgerClass);
-
+        // If there's no toggle, let's create one
+        if (!opts.customToggle) {
+          var toggle = document.createElement("a");
+          toggle.innerHTML = opts.label;
           setAttributes(toggle, {
-            "type": "button",
-            "aria-label": "Menu",
-            "aria-controls": "navigation"
+            "href": "#",
+            "class": "nav-toggle"
           });
-
-          var hamburger = document.createElement("span");
-          hamburger.classList.add("hamburger-box");
-
-          var hamburgerInner = document.createElement("span");
-          hamburgerInner.classList.add("hamburger-inner");
-
-          var hamburgerLabel = document.createElement("span");
-          hamburgerLabel.classList.add("hamburger-label");
-          hamburgerLabel.innerHTML = opts.hamburgerLabel;
-
-          hamburger.innerHTML = hamburgerInner.outerHTML;
-          toggle.innerHTML = hamburger.outerHTML + hamburgerLabel.outerHTML;
 
           // Determine where to insert the toggle
           if (opts.insert === "after") {
@@ -649,40 +629,18 @@
 
           navToggle = toggle;
 
+          // There is a toggle already, let's use that one
         } else {
-          // If there's no toggle, let's create one
-          if (!opts.customToggle) {
-            toggle = document.createElement("a");
-            toggle.innerHTML = opts.label;
-            setAttributes(toggle, {
-              "href": "#",
-              "class": "nav-toggle"
-            });
+          var toggleEl = opts.customToggle.replace("#", "");
 
-            // Determine where to insert the toggle
-            if (opts.insert === "after") {
-              nav.parentNode.insertBefore(toggle, nav.nextSibling);
-            } else {
-              nav.parentNode.insertBefore(toggle, nav);
-            }
-
-            navToggle = toggle;
-
-            // There is a toggle already, let's use that one
+          if (document.getElementById(toggleEl)) {
+            navToggle = document.getElementById(toggleEl);
+          } else if (document.querySelector(toggleEl)) {
+            navToggle = document.querySelector(toggleEl);
           } else {
-            var toggleEl = opts.customToggle.replace("#", "");
-
-            if (document.getElementById(toggleEl)) {
-              navToggle = document.getElementById(toggleEl);
-            } else if (document.querySelector(toggleEl)) {
-              navToggle = document.querySelector(toggleEl);
-            } else {
-              throw new Error("The custom nav toggle you are trying to select doesn't exist");
-            }
+            throw new Error("The custom nav toggle you are trying to select doesn't exist");
           }
         }
-
-
       },
 
       /**

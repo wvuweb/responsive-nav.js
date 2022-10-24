@@ -6,7 +6,6 @@
 [Responsive Nav](http://responsive-nav.com) is a tiny JavaScript plugin which weighs only 1.3kb minified and Gzip’ed, and helps you to create a toggled navigation for small screens. It uses touch events and CSS3 transitions for the best possible performance. It also contains a “clever” workaround that makes it possible to transition from `height: 0` to `height: auto`, which isn’t normally possible with CSS3 transitions.
 
 #### Updates:
-* Includes the ability to use hamburgers from [jonsuh/hamburgers](https://github.com/jonsuh/hamburgers)
 * Includes dropdowns branch from [samikeijonen/responsive-nav.js](https://github.com/samikeijonen/responsive-nav.js) to improve accessible multi-level dropdown functionality
 * Includes passive event support from [cmbuckley/responsive-nav.js](https://github.com/cmbuckley/responsive-nav.js) to fix lighthouse audit https://developers.google.com/web/tools/lighthouse/audits/passive-event-listeners
 
@@ -133,10 +132,6 @@ Following the steps below you will be able to get the plugin up and running. If 
 			transition: 284,                 // Integer: Speed of the transition, in milliseconds
 			label: "Menu",                   // String: Label for the navigation toggle
 			insert: "before",                // String: Insert the toggle before or after the navigation
-      hamburger: false,                // Boolean: Use Hamburger style toggle
-      hamburgerClass: "",              // String: set hamburger style
-      hamburgerLabel: "",              // String set the text label for menu
-      navToggleClass: "active",        // String: Class that is added to the navToggle      
 			customToggle: "",                // Selector: Specify the ID of a custom toggle
 			closeOnNavClick: false,          // Boolean: Close the navigation when one of the links are clicked
 			openPos: "relative",             // String: Position of the opened nav, relative or static
@@ -300,8 +295,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 # Changelog
-`1.1.1`  (2019-06-05) - Adds SCSS support from build.  Adds hamburgers from [jonsuh/hamburgers](https://github.com/jonsuh/hamburgers).  Adds the ability to change the navToggleClass, this is needed as hamburgers needs `is-active` instead of the previous default `active`
-
 `1.1.0`  (2019-06-04) - Adds accessible dropdown support from [samikeijonen/responsive-nav.js](https://github.com/samikeijonen/responsive-nav.js).  Also adds passive event support from [cmbuckley/responsive-nav.js](https://github.com/cmbuckley/responsive-nav.js).  Updates dependencies to use latest jasmine and karma for spec tests and js uglfy for minification.  Removes some extraneous code and brings code base more up to date.
 
 `1.0.39` (2015-04-09) - Adds Browserify support.

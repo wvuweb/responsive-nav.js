@@ -49,6 +49,22 @@ section {
 }
 
 /* ------------------------------------------
+    NAV TOGGLE STYLES
+--------------------------------------------- */
+.hamburger-label {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.hamburger-box {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ------------------------------------------
   NAVIGATION STYLES
   (+ responsive-nav.css file is loaded in the <head>)
 --------------------------------------------- */

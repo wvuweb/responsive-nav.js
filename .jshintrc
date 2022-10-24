@@ -24,7 +24,6 @@
     "responsiveNav" : true,
     "ResponsiveNav" : true,
     "addEvent" : true,
-    "checkPassiveEventSupport": true,
     "removeEvent" : true,
     "addClass" : true,
     "removeClass" : true,

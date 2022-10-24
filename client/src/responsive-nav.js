@@ -443,19 +443,17 @@
        * @param  {event} event
        */
       _preventDefault: function(e) {
-        if (!checkPassiveEventSupport) {
-          if (e.preventDefault) {
-            if (e.stopImmediatePropagation) {
-              e.stopImmediatePropagation();
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-
-            // This is strictly for old IE
-          } else {
-            e.returnValue = false;
+        if (e.preventDefault) {
+          if (e.stopImmediatePropagation) {
+            e.stopImmediatePropagation();
           }
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+
+          // This is strictly for old IE
+        } else {
+          e.returnValue = false;
         }
       },
 

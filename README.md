@@ -133,10 +133,10 @@ Following the steps below you will be able to get the plugin up and running. If 
 			transition: 284,                 // Integer: Speed of the transition, in milliseconds
 			label: "Menu",                   // String: Label for the navigation toggle
 			insert: "before",                // String: Insert the toggle before or after the navigation
-			hamburger: false,                // Boolean: Use Hamburger style toggle
-			hamburgerClass: "",              // String: set hamburger style
-			hamburgerLabel: "",              // String set the text label for menu
-			navToggleClass: "active",        // String: Class that is added to the navToggle      
+      hamburger: false,                // Boolean: Use Hamburger style toggle
+      hamburgerClass: "",              // String: set hamburger style
+      hamburgerLabel: "",              // String set the text label for menu
+      navToggleClass: "active",        // String: Class that is added to the navToggle      
 			customToggle: "",                // Selector: Specify the ID of a custom toggle
 			closeOnNavClick: false,          // Boolean: Close the navigation when one of the links are clicked
 			openPos: "relative",             // String: Position of the opened nav, relative or static

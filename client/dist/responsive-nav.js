@@ -618,7 +618,6 @@
 
         if (opts.hamburger){
           toggle = document.createElement("button");
-          toggle.classList.add("nav-toggle");
           toggle.classList.add("hamburger");
           toggle.classList.add(opts.hamburgerClass);
 

@@ -1,6 +1,6 @@
 {
   "name": "responsive-nav",
-  "version": "1.1.0",
+  "version": "1.0.39",
   "description": "Responsive Nav JS plugin",
   "main": "client/dist/responsive-nav.js",
   "scripts": {
@@ -17,19 +17,16 @@
     "url": "https://github.com/viljamis/responsive-nav/issues"
   },
   "devDependencies": {
-    "express": "~3.3.5",
     "grunt": "~0.4.1",
-    "grunt-contrib-copy": "~1.0.0",
-    "grunt-contrib-jasmine": "~2.0.3",
-    "grunt-contrib-jshint": "~2.1.0",
-    "grunt-contrib-uglify": "~4.0.1",
-    "grunt-contrib-watch": "~1.1.0",
-    "grunt-karma": "~3.0.2",
-    "grunt-replace": "~1.0.1",
-    "grunt-rigger": "~0.6.0",
-    "grunt-shell": "~3.0.1",
-    "karma": "^4.1.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^2.0.1"
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-rigger": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "express": "~3.3.5",
+    "grunt-shell": "~0.3.1",
+    "grunt-replace": "~0.4.4",
+    "grunt-karma": "~0.6.1",
+    "grunt-contrib-copy": "~0.4.1"
   }
 }

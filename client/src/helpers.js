@@ -110,7 +110,10 @@ var addEvent = function (el, evt, fn, bubble) {
    * @param {string}  class
    */
   addClass = function (el, cls) {
-    el.classList.add(cls);
+    if (el.className.indexOf(cls) !== 0) {
+      el.className += " " + cls;
+      el.className = el.className.replace(/(^\s*)|(\s*$)/g,"");
+    }
   },
 
   /**
@@ -120,7 +123,8 @@ var addEvent = function (el, evt, fn, bubble) {
    * @param  {string}  class
    */
   removeClass = function (el, cls) {
-    el.classList.remove(cls);
+    var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+    el.className = el.className.replace(reg, " ").replace(/(^\s*)|(\s*$)/g,"");
   },
 
   /**

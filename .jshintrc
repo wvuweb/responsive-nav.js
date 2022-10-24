@@ -27,8 +27,6 @@
     "removeEvent" : true,
     "addClass" : true,
     "removeClass" : true,
-    "hasClass" : true,
-    "toggleFocus" : true,
     "setAttributes" : true,
     "getChildren" : true,
     "forEach" : true,

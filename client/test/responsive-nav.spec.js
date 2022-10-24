@@ -284,7 +284,11 @@ describe("responsive-nav", function () {
 
       it("controls the transition speed", function () {
         nav = responsiveNav(idSelector, { transition: 666 });
-        expect(el.style.transition).toBe("max-height 666ms ease 0s, visibility 666ms linear 0s");
+        if (el.style.transition) {
+          expect(el.style.transition).toBe("max-height 666ms ease 0s");
+        } else if (el.style.webkitTransition) {
+          expect(el.style.webkitTransition).toBe("max-height 666ms ease 0s");
+        }
         nav.destroy();
       });
 

@@ -7,98 +7,89 @@
  */
 
 /* global Event */
-(function(document, window, index) {
+(function (document, window, index) {
   // Index is used to keep multiple navs on the same page namespaced
 
   "use strict";
 
-  var responsiveNav = function(el, options) {
+  var responsiveNav = function (el, options) {
 
     //= polyfills.js
     //= helpers.js
 
-    var nav;
-    var opts;
-    var navToggle;
-    var styleElement = document.createElement("style");
-    var htmlEl = document.documentElement;
-    var hasAnimFinished;
-    var isMobile;
-    var navOpen;
-    var dropdownButton;
+    var nav,
+      opts,
+      navToggle,
+      styleElement = document.createElement("style"),
+      htmlEl = document.documentElement,
+      hasAnimFinished,
+      isMobile,
+      navOpen;
 
-    var ResponsiveNav = function(el, options) {
-      var i;
+    var ResponsiveNav = function (el, options) {
+        var i;
 
-      /**
-       * Default options
-       * @type {Object}
-       */
-      this.options = {
-        animate: true, // Boolean: Use CSS3 transitions, true or false
-        transition: 284, // Integer: Speed of the transition, in milliseconds
-        label: "Menu", // String: Label for the navigation toggle
-        insert: "before", // String: Insert the toggle before or after the navigation
-        customToggle: "", // Selector: Specify the ID of a custom toggle
-        closeOnNavClick: false, // Boolean: Close the navigation when one of the links are clicked
-        openPos: "relative", // String: Position of the opened nav, relative or static
-        navClass: "nav-collapse", // String: Default CSS class. If changed, you need to edit the CSS too!
-        navActiveClass: "js-nav-active", // String: Class that is added to <html> element when nav is active
-        jsClass: "js", // String: 'JS enabled' class which is added to <html> element
-        enableFocus: false, // Boolean: Do we add 'focus' class in nav elements
-        enableDropdown: false, // Boolean: Do we use multi level dropdown
-        menuItems: "menu-items", // String: Class that is added only to top ul element
-        subMenu: "sub-menu", // String: Class that is added to sub menu ul elements
-        openDropdown: "Open sub menu", // String: Label for opening sub menu
-        closeDropdown: "Close sub menu", // String: Label for closing sub menu
-        init: function() {}, // Function: Init callback
-        open: function() {}, // Function: Open callback
-        close: function() {}, // Function: Close callback
-        resizeMobile: function() {}, // Function: Resize callback for "mobile"
-        resizeDesktop: function() {} // Function: Resize callback for "desktop"
-      };
+        /**
+         * Default options
+         * @type {Object}
+         */
+        this.options = {
+          animate: true,                    // Boolean: Use CSS3 transitions, true or false
+          transition: 284,                  // Integer: Speed of the transition, in milliseconds
+          label: "Menu",                    // String: Label for the navigation toggle
+          insert: "before",                 // String: Insert the toggle before or after the navigation
+          customToggle: "",                 // Selector: Specify the ID of a custom toggle
+          closeOnNavClick: false,           // Boolean: Close the navigation when one of the links are clicked
+          openPos: "relative",              // String: Position of the opened nav, relative or static
+          navClass: "nav-collapse",         // String: Default CSS class. If changed, you need to edit the CSS too!
+          navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
+          jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
+          init: function(){},               // Function: Init callback
+          open: function(){},               // Function: Open callback
+          close: function(){}               // Function: Close callback
+        };
 
-      // User defined options
-      for (i in options) {
-        this.options[i] = options[i];
-      }
+        // User defined options
+        for (i in options) {
+          this.options[i] = options[i];
+        }
 
-      // Adds "js" class for <html>
-      addClass(htmlEl, this.options.jsClass);
+        // Adds "js" class for <html>
+        addClass(htmlEl, this.options.jsClass);
 
-      // Wrapper
-      this.wrapperEl = el.replace("#", "");
+        // Wrapper
+        this.wrapperEl = el.replace("#", "");
 
-      // Try selecting ID first
-      if (document.getElementById(this.wrapperEl)) {
-        this.wrapper = document.getElementById(this.wrapperEl);
+        // Try selecting ID first
+        if (document.getElementById(this.wrapperEl)) {
+          this.wrapper = document.getElementById(this.wrapperEl);
 
         // If element with an ID doesn't exist, use querySelector
-      } else if (document.querySelector(this.wrapperEl)) {
-        this.wrapper = document.querySelector(this.wrapperEl);
+        } else if (document.querySelector(this.wrapperEl)) {
+          this.wrapper = document.querySelector(this.wrapperEl);
 
         // If element doesn't exists, stop here.
-      } else {
-        throw new Error("The nav element you are trying to select doesn't exist");
-      }
+        } else {
+          throw new Error("The nav element you are trying to select doesn't exist");
+        }
 
-      // Inner wrapper
-      this.wrapper.inner = getChildren(this.wrapper);
+        // Inner wrapper
+        this.wrapper.inner = getChildren(this.wrapper);
 
-      // For minification
-      opts = this.options;
-      nav = this.wrapper;
+        // For minification
+        opts = this.options;
+        nav = this.wrapper;
 
-      // Init
-      this._init(this);
-    };
+        // Init
+        this._init(this);
+      };
 
     ResponsiveNav.prototype = {
 
       /**
        * Unattaches events and removes any classes that were added
        */
-      destroy: function() {
+      destroy: function () {
         this._removeStyles();
         removeClass(nav, "closed");
         removeClass(nav, "opened");
@@ -121,24 +112,12 @@
         } else {
           navToggle.removeAttribute("aria-hidden");
         }
-
-        if (opts.enableDropdown) {
-          var self = this;
-          forEach(dropdownButton, function(i, el) {
-            removeEvent(el, "touchstart", self, false);
-            removeEvent(el, "touchend", self, false);
-            removeEvent(el, "mouseup", self, false);
-            removeEvent(el, "keyup", self, false);
-            removeEvent(el, "click", self, false);
-          });
-        }
-
       },
 
       /**
        * Toggles the navigation open/close
        */
-      toggle: function() {
+      toggle: function () {
         if (hasAnimFinished === true) {
           if (!navOpen) {
             this.open();
@@ -151,22 +130,14 @@
       /**
        * Opens the navigation
        */
-      open: function() {
+      open: function () {
         if (!navOpen) {
           removeClass(nav, "closed");
           addClass(nav, "opened");
           addClass(htmlEl, opts.navActiveClass);
           addClass(navToggle, "active");
           nav.style.position = opts.openPos;
-          setAttributes(nav, {
-            "aria-hidden": "false"
-          });
-          setAttributes(nav, {
-            "aria-expanded": "true"
-          });
-          setAttributes(navToggle, {
-            "aria-expanded": "true"
-          });
+          setAttributes(nav, {"aria-hidden": "false"});
           navOpen = true;
           opts.open();
         }
@@ -175,50 +146,25 @@
       /**
        * Closes the navigation
        */
-      close: function() {
+      close: function () {
         if (navOpen) {
           addClass(nav, "closed");
           removeClass(nav, "opened");
           removeClass(htmlEl, opts.navActiveClass);
           removeClass(navToggle, "active");
-          setAttributes(nav, {
-            "aria-hidden": "true"
-          });
-          setAttributes(nav, {
-            "aria-expanded": "false"
-          });
-          setAttributes(navToggle, {
-            "aria-expanded": "false"
-          });
+          setAttributes(nav, {"aria-hidden": "true"});
 
           // If animations are enabled, wait until they finish
           if (opts.animate) {
             hasAnimFinished = false;
-            setTimeout(function() {
+            setTimeout(function () {
               nav.style.position = "absolute";
               hasAnimFinished = true;
-
-              if (opts.enableDropdown) {
-                removeClass(nav, "dropdown-active");
-                forEach(dropdownButton, function(i, el) {
-                  removeClass(el, "toggled");
-                  removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
-                });
-              }
-
             }, opts.transition + 10);
 
-            // Animations aren't enabled, we can do these immediately
+          // Animations aren't enabled, we can do these immediately
           } else {
             nav.style.position = "absolute";
-
-            if (opts.enableDropdown) {
-              removeClass(nav, "dropdown-active");
-              forEach(dropdownButton, function(i, el) {
-                removeClass(el, "toggled");
-                removeClass(el.nextSibling, "toggled"); // Remove class from sub-menu ul element.
-              });
-            }
           }
 
           navOpen = false;
@@ -230,59 +176,29 @@
        * Resize is called on window resize and orientation change.
        * It initializes the CSS styles and height calculations.
        */
-      resize: function() {
+      resize: function () {
 
         // Resize watches navigation toggle's display state
         if (window.getComputedStyle(navToggle, null).getPropertyValue("display") !== "none") {
 
           isMobile = true;
-          setAttributes(navToggle, {
-            "aria-hidden": "false"
-          });
-          setAttributes(nav, {
-            "aria-expanded": "false"
-          });
-          setAttributes(navToggle, {
-            "aria-expanded": "false"
-          });
+          setAttributes(navToggle, {"aria-hidden": "false"});
 
           // If the navigation is hidden
           if (nav.className.match(/(^|\s)closed(\s|$)/)) {
-            setAttributes(nav, {
-              "aria-hidden": "true"
-            });
+            setAttributes(nav, {"aria-hidden": "true"});
             nav.style.position = "absolute";
-          }
-
-          // If the navigation is not hidden
-          if (!nav.className.match(/(^|\s)closed(\s|$)/)) {
-            setAttributes(nav, {
-              "aria-expanded": "true"
-            });
-            setAttributes(navToggle, {
-              "aria-expanded": "true"
-            });
           }
 
           this._createStyles();
           this._calcHeight();
-          opts.resizeMobile();
-
         } else {
 
           isMobile = false;
-          setAttributes(navToggle, {
-            "aria-hidden": "true"
-          });
-          setAttributes(nav, {
-            "aria-hidden": "false"
-          });
-          nav.removeAttribute("aria-expanded");
-          navToggle.removeAttribute("aria-expanded");
+          setAttributes(navToggle, {"aria-hidden": "true"});
+          setAttributes(nav, {"aria-hidden": "false"});
           nav.style.position = opts.openPos;
           this._removeStyles();
-          opts.resizeDesktop();
-
         }
       },
 
@@ -292,37 +208,37 @@
        * @param  {event} event
        * @return {type} returns the type of event that should be used
        */
-      handleEvent: function(e) {
+      handleEvent: function (e) {
         var evt = e || window.event;
 
         switch (evt.type) {
-          case "touchstart":
-            this._onTouchStart(evt);
-            break;
-          case "touchmove":
-            this._onTouchMove(evt);
-            break;
-          case "touchend":
-          case "mouseup":
-            this._onTouchEnd(evt);
-            break;
-          case "click":
-            this._preventDefault(evt);
-            break;
-          case "keyup":
-            this._onKeyUp(evt);
-            break;
-          case "focus":
-          case "resize":
-            this.resize(evt);
-            break;
+        case "touchstart":
+          this._onTouchStart(evt);
+          break;
+        case "touchmove":
+          this._onTouchMove(evt);
+          break;
+        case "touchend":
+        case "mouseup":
+          this._onTouchEnd(evt);
+          break;
+        case "click":
+          this._preventDefault(evt);
+          break;
+        case "keyup":
+          this._onKeyUp(evt);
+          break;
+        case "focus":
+        case "resize":
+          this.resize(evt);
+          break;
         }
       },
 
       /**
        * Initializes the widget
        */
-      _init: function() {
+      _init: function () {
         this.index = index++;
 
         addClass(nav, opts.navClass);
@@ -335,17 +251,13 @@
         this._transitions();
         this.resize();
 
-        // Enable more accessible dropdown menu
-        this._createFocus();
-        this._createDropdown();
-
         /**
          * On IE8 the resize event triggers too early for some reason
          * so it's called here again on init to make sure all the
          * calculated styles are correct.
          */
         var self = this;
-        setTimeout(function() {
+        setTimeout(function () {
           self.resize();
         }, 20);
 
@@ -367,7 +279,7 @@
       /**
        * Creates Styles to the <head>
        */
-      _createStyles: function() {
+      _createStyles: function () {
         if (!styleElement.parentNode) {
           styleElement.type = "text/css";
           document.getElementsByTagName("head")[0].appendChild(styleElement);
@@ -377,7 +289,7 @@
       /**
        * Removes styles from the <head>
        */
-      _removeStyles: function() {
+      _removeStyles: function () {
         if (styleElement.parentNode) {
           styleElement.parentNode.removeChild(styleElement);
         }
@@ -386,7 +298,7 @@
       /**
        * Creates Navigation Toggle
        */
-      _createToggle: function() {
+      _createToggle: function () {
 
         // If there's no toggle, let's create one
         if (!opts.customToggle) {
@@ -406,7 +318,7 @@
 
           navToggle = toggle;
 
-          // There is a toggle already, let's use that one
+        // There is a toggle already, let's use that one
         } else {
           var toggleEl = opts.customToggle.replace("#", "");
 
@@ -423,12 +335,12 @@
       /**
        * Closes the navigation when a link inside is clicked.
        */
-      _closeOnNavClick: function() {
+      _closeOnNavClick: function () {
         if (opts.closeOnNavClick) {
           var links = nav.getElementsByTagName("a"),
             self = this;
-          forEach(links, function(i, el) {
-            addEvent(links[i], "click", function() {
+          forEach(links, function (i, el) {
+            addEvent(links[i], "click", function () {
               if (isMobile) {
                 self.toggle();
               }
@@ -451,7 +363,7 @@
           e.stopPropagation();
           return false;
 
-          // This is strictly for old IE
+        // This is strictly for old IE
         } else {
           e.returnValue = false;
         }
@@ -462,7 +374,7 @@
        *
        * @param  {event} event
        */
-      _onTouchStart: function(e) {
+      _onTouchStart: function (e) {
         if (!Event.prototype.stopImmediatePropagation) {
           this._preventDefault(e);
         }
@@ -482,9 +394,9 @@
        *
        * @param  {event} event
        */
-      _onTouchMove: function(e) {
+      _onTouchMove: function (e) {
         if (Math.abs(e.touches[0].clientX - this.startX) > 10 ||
-          Math.abs(e.touches[0].clientY - this.startY) > 10) {
+        Math.abs(e.touches[0].clientY - this.startY) > 10) {
           this.touchHasMoved = true;
         }
       },
@@ -494,20 +406,10 @@
        *
        * @param  {event} event
        */
-      _onTouchEnd: function(e) {
+      _onTouchEnd: function (e) {
         this._preventDefault(e);
         if (!isMobile) {
           return;
-        }
-
-        // Get event.target, the old IE way
-        var thisEvent = e || window.event,
-          targetEl = thisEvent.target || thisEvent.srcElement,
-          isDropdownTapped = false;
-
-        // Was it sub-navigation toggle or the main toggle?
-        if (hasClass(targetEl, "dropdown-toggle") && opts.enableDropdown) {
-          isDropdownTapped = true;
         }
 
         // If the user isn't scrolling
@@ -515,28 +417,16 @@
 
           // If the event type is touch
           if (e.type === "touchend") {
-
-            // If sub-navigation toggle was tapped
-            if (isDropdownTapped) {
-              this._toggleDropdown(targetEl);
-
-              // If the main toggle was tapped
-            } else {
-              this.toggle();
-            }
+            this.toggle();
             return;
 
-            // Event type was click, not touch
+          // Event type was click, not touch
           } else {
             var evt = e || window.event;
 
             // If it isn't a right click, do toggling
             if (!(evt.which === 3 || evt.button === 2)) {
-              if (isDropdownTapped) {
-                this._toggleDropdown(targetEl);
-              } else {
-                this.toggle();
-              }
+              this.toggle();
             }
           }
         }
@@ -548,36 +438,25 @@
        *
        * @param  {event} event
        */
-      _onKeyUp: function(e) {
-        var evt = e || window.event,
-          targetEl = e.target,
-          isDropdownTapped = false;
-
-        if (hasClass(targetEl, "dropdown-toggle") && opts.enableDropdown) {
-          isDropdownTapped = true;
-        }
-
+      _onKeyUp: function (e) {
+        var evt = e || window.event;
         if (evt.keyCode === 13) {
-          if (isDropdownTapped) {
-            this._toggleDropdown(targetEl);
-          } else {
-            this.toggle();
-          }
+          this.toggle();
         }
       },
 
       /**
        * Adds the needed CSS transitions if animations are enabled
        */
-      _transitions: function() {
+      _transitions: function () {
         if (opts.animate) {
           var objStyle = nav.style,
-            transition = "max-height " + opts.transition + "ms, visibility " + opts.transition + "ms linear";
+            transition = "max-height " + opts.transition + "ms";
 
           objStyle.WebkitTransition =
-            objStyle.MozTransition =
-            objStyle.OTransition =
-            objStyle.transition = transition;
+          objStyle.MozTransition =
+          objStyle.OTransition =
+          objStyle.transition = transition;
         }
       },
 
@@ -585,7 +464,7 @@
        * Calculates the height of the navigation and then creates
        * styles which are later added to the page <head>
        */
-      _calcHeight: function() {
+      _calcHeight: function () {
         var savedHeight = 0;
         for (var i = 0; i < nav.inner.length; i++) {
           savedHeight += nav.inner[i].offsetHeight;
@@ -600,133 +479,7 @@
         }
 
         innerStyles = "";
-      },
-
-      /**
-       * Creates 'focus' class on nav elements
-       */
-      _createFocus: function() {
-
-        // Bail if focus is not enabled.
-        if (!opts.enableFocus) {
-          return;
-        }
-
-        // Get all the link elements within the menu.
-        var menu = nav.getElementsByTagName("ul")[0];
-        var links = menu.getElementsByTagName("a");
-        var len;
-        var i;
-
-        // Each time a menu link is focused or blurred, toggle focus.
-        for (i = 0, len = links.length; i < len; i++) {
-          links[i].addEventListener("focus", toggleFocus, true);
-          links[i].addEventListener("blur", toggleFocus, true);
-        }
-
-      },
-
-      /**
-       * Enable multi-level dropdown
-       */
-      _createDropdown: function() {
-
-        // Bail if multiple level dropdown is not enabled.
-        if (!opts.enableDropdown) {
-          return;
-        }
-
-        var self = this;
-
-        // Get submenus
-        var subMenus = nav.getElementsByClassName(opts.subMenu);
-        var i;
-        var len;
-
-        // Add .multiple-level-nav class to nav
-        addClass(nav, "multiple-level-nav");
-
-        // Set menu items with sub menus to aria-haspopup="true" and add toggle button before sub menu.
-        for (i = 0, len = subMenus.length; i < len; i++) {
-          subMenus[i].parentNode.setAttribute("aria-haspopup", "true");
-          subMenus[i].insertAdjacentHTML("beforebegin", "<button class=\"dropdown-toggle\" aria-expanded=\"false\">" + opts.openDropdown + "</button>");
-        }
-
-        // Select all dropdown buttons
-        dropdownButton = nav.querySelectorAll(".dropdown-toggle");
-
-        // For each dropdown Button element add click event
-        forEach(dropdownButton, function(i, el) {
-          addEvent(el, "touchstart", self, false);
-          addEvent(el, "touchend", self, false);
-          addEvent(el, "mouseup", self, false);
-          addEvent(el, "keyup", self, false);
-          addEvent(el, "click", self, false);
-        });
-
-      },
-
-      /**
-       * Toggles sub-navigations open/closed
-       *
-       * @param  {element} The toggle that was tapped
-       */
-      _toggleDropdown: function(targetEl) {
-
-        // Enable active class to let the navigation expand over
-        // the calculated max height
-        //addClass(nav, "dropdown-active");
-
-        // Change dropdown button text on every click
-        if (targetEl.innerHTML === opts.openDropdown) {
-          targetEl.innerHTML = opts.closeDropdown;
-        } else {
-          targetEl.innerHTML = opts.openDropdown;
-        }
-
-        // Check if the sub-navigation is inside another sub-nav
-        // var parentEl = targetEl.parentNode;
-        // var isInsideSub = hasClass(parentEl.parentNode.parentNode, "dropdown");
-        var nextElement;
-
-        // Toggle dropdown button
-        if (!hasClass(targetEl, "toggled")) {
-
-          // Add .toggled class
-          addClass(targetEl, "toggled");
-
-          // Set aria-expanded to true
-          targetEl.setAttribute("aria-expanded", "true");
-
-          // Get next element meaning UL with .sub-menu class
-          nextElement = targetEl.nextElementSibling;
-
-          // Add "toggled" class to sub-menu element
-          addClass(nextElement, "toggled");
-
-          // Add "dropdown-active" class to nav when dropdown is toggled
-          addClass(nav, "dropdown-active");
-
-        } else {
-
-          // Remove .toggled class
-          removeClass(targetEl, "toggled");
-
-          // Set aria-expanded to false
-          targetEl.setAttribute("aria-expanded", "false");
-
-          // Get next element meaning UL with .sub-menu
-          nextElement = targetEl.nextElementSibling;
-
-          // Remove "toggled" class from sub-menu element
-          removeClass(nextElement, "toggled");
-
-          // Remove "dropdown-active" class to nav when dropdown is toggled
-          removeClass(nav, "dropdown-active");
-
-        }
-
-      },
+      }
 
     };
 

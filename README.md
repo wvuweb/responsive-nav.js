@@ -5,9 +5,6 @@
 
 [Responsive Nav](http://responsive-nav.com) is a tiny JavaScript plugin which weighs only 1.3kb minified and Gzip’ed, and helps you to create a toggled navigation for small screens. It uses touch events and CSS3 transitions for the best possible performance. It also contains a “clever” workaround that makes it possible to transition from `height: 0` to `height: auto`, which isn’t normally possible with CSS3 transitions.
 
-#### Updates:
-* Includes dropdowns branch from [samikeijonen/responsive-nav.js](https://github.com/samikeijonen/responsive-nav.js) to improve accessible multi-level dropdown functionality
-* Includes passive event support from [cmbuckley/responsive-nav.js](https://github.com/cmbuckley/responsive-nav.js) to fix lighthouse audit https://developers.google.com/web/tools/lighthouse/audits/passive-event-listeners
 
 #### Features:
 
@@ -295,7 +292,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 # Changelog
-`1.1.0`  (2019-06-04) - Adds accessible dropdown support from [samikeijonen/responsive-nav.js](https://github.com/samikeijonen/responsive-nav.js).  Also adds passive event support from [cmbuckley/responsive-nav.js](https://github.com/cmbuckley/responsive-nav.js).  Updates dependencies to use latest jasmine and karma for spec tests and js uglfy for minification.  Removes some extraneous code and brings code base more up to date.
 
 `1.0.39` (2015-04-09) - Adds Browserify support.
 

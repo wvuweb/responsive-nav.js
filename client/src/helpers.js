@@ -138,4 +138,39 @@ var addEvent = function (el, evt, fn, bubble) {
     for (var i = 0; i < array.length; i++) {
       callback.call(scope, i, array[i]);
     }
+  },
+
+  /**
+   * Checks if an element has certain class
+   *
+   * @param  {element}  element
+   * @param  {string}   class name
+   * @return {Boolean}
+   */
+  hasClass = function (el, cls) {
+    return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
+  },
+
+  /**
+   * Sets or removes .focus class on an element.
+   */
+  toggleFocus = function () {
+    var self = this,
+      menuItems = opts.menuItems;
+
+    // Move up through the ancestors of the current link until we hit 'menu-items' class. That's top level ul-element class name.
+    while ( -1 === self.className.indexOf( menuItems ) ) {
+
+      // On li elements toggle the class .focus.
+      if ( 'li' === self.tagName.toLowerCase() ) {
+        if ( -1 !== self.className.indexOf( 'focus' ) ) {
+          self.className = self.className.replace( ' focus', '' );
+        } else {
+          self.className += ' focus';
+        }
+      }
+
+      self = self.parentElement;
+    }
+
   };

@@ -250,7 +250,7 @@ p {
   }
 
   /* Enable active class to let the navigation expand over the calculated max height. */
-  .js .nav-collapse.multiple-level-nav.opened.dropdown-active {
+  .js .nav-collapse.multiple-level-nav.opened.wvu-dropdown-active {
     max-height: 9999px !important;
   }
 
@@ -273,7 +273,7 @@ p {
     position: relative;
   }
 
-  .js .nav-collapse .dropdown-toggle {
+  .js .nav-collapse .wvu-dropdown-toggle {
     border: 1px solid #fff;
     color: #fff;
     content: "";
@@ -286,47 +286,47 @@ p {
     top: 0.6em;
     right: 4%;
   }
-  .js .nav-collapse .dropdown-toggle:hover,
-  .js .nav-collapse .dropdown-toggle:focus,
-  .js .nav-collapse .dropdown-toggle:active  {
+  .js .nav-collapse .wvu-dropdown-toggle:hover,
+  .js .nav-collapse .wvu-dropdown-toggle:focus,
+  .js .nav-collapse .wvu-dropdown-toggle:active  {
     background-color: #fff;
     color: #212428;  
   }
 
-  .js .nav-collapse .dropdown-toggle:after {
+  .js .nav-collapse .wvu-dropdown-toggle:after {
     content: "+";
     font-size: 20px;
   }
-  .js .nav-collapse .dropdown-toggle.toggled:after {
+  .js .nav-collapse .wvu-dropdown-toggle.toggled:after {
     content: "-";
   }
   
 }
   
-.dropdown ul a {
+.wvu-dropdown ul a {
   background: #282e34;
   padding-left: 1.5em;
 }
 
-.dropdown ul ul a {
+.wvu-dropdown ul ul a {
   background: #2d353e
   ;
   padding-left: 2.5em;
 }
 
 @media screen and (min-width: 40em) {
-  .dropdown-toggle  {
+  .wvu-dropdown-toggle  {
     display: none;
   }
 
 }
 
-.dropdown ul ul {
+.wvu-dropdown ul ul {
   border: 0;
   padding: 0;
 }
 
-.dropdown .dropdown.opened .has-dropdown {
+.wvu-dropdown .wvu-dropdown.opened .has-dropdown {
   background: #9c2c12;
 }
 
@@ -338,7 +338,7 @@ p {
   }
 
   .js .nav-collapse,
-  .js .nav-collapse .dropdown ul {
+  .js .nav-collapse .wvu-dropdown ul {
     max-height: none;
     overflow: visible;
   }
@@ -355,7 +355,7 @@ p {
     border-right: 6px solid transparent;
     border-top: 6px solid #fff;
   }
-  .dropdown ul .has-dropdown:after {
+  .wvu-dropdown ul .has-dropdown:after {
     content: "";
     width: 0;
     height: 0;
@@ -364,13 +364,13 @@ p {
     border-top: 6px solid transparent;
     border-left: 6px solid #fff;
   }
-  .nav-collapse .dropdown {
+  .nav-collapse .wvu-dropdown {
     position: relative;
   }
-  .nav-collapse .dropdown li {
+  .nav-collapse .wvu-dropdown li {
     width: 100%;
   }
-  .nav-collapse .dropdown ul a {
+  .nav-collapse .wvu-dropdown ul a {
     text-align: left;
     border: 0;
   }
